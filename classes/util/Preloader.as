@@ -48,27 +48,28 @@ package classes.util{
 		}
 
 		private function completeHandler(event:Event):void {
-			trace("completeHandler: " + event.target);
+/*			trace("completeHandler: " + event.target);*/
 			var arrayPos = findLoaderInArray(event.target.loader);
 			if (arrayPos is int) {
-				trace("loaderArr[" + arrayPos + "][assetURL] is " + loaderArr[arrayPos]["assetURL"] + " & callback is " + loaderArr[arrayPos]["callback"]);
+/*				trace("loaderArr[" + arrayPos + "][assetURL] is " + loaderArr[arrayPos]["assetURL"]);*/
+				if (loaderArr[arrayPos]["refObject"] && loaderArr[arrayPos]["callback"]) {
+/*					trace("loaderArr["+ arrayPos +"][callback] is " + loaderArr[arrayPos]["callback"]);*/
+					loaderArr[arrayPos]["refObject"][loaderArr[arrayPos]["callback"]]();
+				}
 			}else{
-				trace("loader is not in array");
-			}
-			if (loaderArr[arrayPos]["refObject"] && loaderArr[arrayPos]["callback"]) {
-				refObject[callback]();
+/*				trace("loader is not in array");*/
 			}
 		}
 
 		private function httpStatusHandler(event:HTTPStatusEvent):void {
-			trace("httpStatusHandler: " + event);
+/*			trace("httpStatusHandler: " + event);*/
 		}
 
 		private function initHandler(event:Event):void {
-			trace("initHandler: " + event);
+/*			trace("initHandler: " + event);
 			trace("event.target: " + event.target);
-/*			trace("event.target.loader.callback = " + event.target.loader.callback);*/
-		}
+			trace("event.target.loader.callback = " + event.target.loader.callback);
+*/		}
 
 		private function ioErrorHandler(event:IOErrorEvent):void {
 			trace("ioErrorHandler: " + event);

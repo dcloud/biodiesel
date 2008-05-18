@@ -3,28 +3,28 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>classes/util/Preloader.as</string>
+	<string>classes/core/Main.as</string>
 	<key>documents</key>
 	<array>
 		<dict>
 			<key>filename</key>
 			<string>classes/core/Main.as</string>
 			<key>lastUsed</key>
-			<date>2008-04-30T22:04:59Z</date>
+			<date>2008-05-18T04:23:06Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>classes/ui/NavButton.as</string>
 			<key>lastUsed</key>
-			<date>2008-04-30T22:05:00Z</date>
+			<date>2008-05-18T04:23:06Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>classes/util/Preloader.as</string>
 			<key>lastUsed</key>
-			<date>2008-04-30T22:05:00Z</date>
-			<key>selected</key>
-			<true/>
+			<date>2008-05-18T04:10:52Z</date>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
@@ -36,23 +36,23 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>21</integer>
-				<key>line</key>
 				<integer>33</integer>
+				<key>line</key>
+				<integer>76</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>29</integer>
 		</dict>
 		<key>classes/ui/NavButton.as</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>48</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>15</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -64,14 +64,30 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>line</key>
-				<integer>59</integer>
+				<integer>71</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>30</integer>
+			<integer>41</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>68</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>2</integer>
+				<key>line</key>
+				<integer>71</integer>
+			</dict>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
@@ -83,6 +99,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{54, 196}, {1002, 832}}</string>
+	<string>{{17, 196}, {1002, 832}}</string>
 </dict>
 </plist>
