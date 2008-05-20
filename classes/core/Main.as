@@ -7,7 +7,9 @@
     import flash.events.*;
 	import flash.system.System;
     import flash.net.URLRequest;
+	
 	import classes.util.Preloader;
+	import classes.ui.NavButton;
 		
 	public class Main extends Sprite{
 		private var bgLoader:Loader;
@@ -17,10 +19,18 @@
 		private var contentHider:Sprite;
 		private var contentRevealTween:Tween;
 		
+		private var buttonArray:Array;
+		
+		private var tmpNameArr:Array;
+		
 		private var testLoader1:Loader;
 		private var testLoader2:Loader;
 		
 		public function Main(){
+			trace("Hello World");
+			// temp name array should be replaced when XML loader is added
+			tmpNameArr = ["Introduction", "Making Biodiesel", "Sustainable Biodiesel", "Comparing Alternatives"];
+			
 			preloader = new Preloader();
 			bgLoader = new Loader();
 			testLoader1 = new Loader();
@@ -36,21 +46,46 @@
 			contentRevealTween.addEventListener(TweenEvent.MOTION_RESUME, tweenStarted);
 			contentRevealTween.addEventListener(TweenEvent.MOTION_FINISH, tweenFinished);
 			preloader.queueItemToLoad(bgURL, bgLoader, this, "backgroundLoaded");
-			/* test the preloader with a few sample images */
-/*			preloader.queueItemToLoad("testloaderassets/2093869943_ea17832cfc_o.jpg", testLoader1, this);*/
-/*			preloader.queueItemToLoad("testloaderassets/2093870245_1a64740b13_o.jpg", testLoader2, this);*/
-			trace("Hello World");
 			addChildAt(bgLoader, 0);
-			addChild(contentHider);
+			/* test the preloader with a few sample images */
+/*			preloader.queueItemToLoad("testloaderassets/2093869943_ea17832cfc_o.jpg", testLoader1, this);
+			preloader.queueItemToLoad("testloaderassets/2093870245_1a64740b13_o.jpg", testLoader2, this);
 			testLoader1.x = 10;
 			testLoader1.y = 100;
 			testLoader2.x = 30;
 			testLoader2.y = 100;
 			addChild(testLoader1);
 			addChild(testLoader2);
+*/			
+			// Create buttons
+			buttonArray = new Array();
+			for ( var j=0; j<tmpNameArr.length; j++ ) {
+				var newButton = new NavButton(tmpNameArr[j]);
+				newButton.name = "button" + j;
+				buttonArray[j] = newButton;
+			};
 			
+			for ( var b=0; b<buttonArray.length; b++ ) {
+				if (b ==0) {
+					buttonArray[b].x = 200;
+				}else{
+					buttonArray[b].x += buttonArray[b-1].x + buttonArray[b-1].width + 40;
+				}
+				buttonArray[b].y = 30;
+				addChild(buttonArray[b]);
+			};
 			
-		}
+/*			testButton = new NavButton("Sustainable Biodiesel");
+			addChild(testButton);
+			testButton.x = 100;
+			testButton.y = 100;
+			tst2 = new NavButton("Making Biodiesel");
+			addChild(tst2);
+			tst2.x = 100;
+			tst2.y = 140;
+*/			
+			addChild(contentHider);
+		};
 		
 		public function testcallback():void{
 			trace("Callback.");
