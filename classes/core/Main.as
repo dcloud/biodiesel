@@ -48,7 +48,7 @@
 			preloader.queueItemToLoad(bgURL, bgLoader, this, "backgroundLoaded");
 			addChildAt(bgLoader, 0);
 			/* test the preloader with a few sample images */
-/*			preloader.queueItemToLoad("testloaderassets/2093869943_ea17832cfc_o.jpg", testLoader1, this);
+			preloader.queueItemToLoad("testloaderassets/2093869943_ea17832cfc_o.jpg", testLoader1, this);
 			preloader.queueItemToLoad("testloaderassets/2093870245_1a64740b13_o.jpg", testLoader2, this);
 			testLoader1.x = 10;
 			testLoader1.y = 100;
@@ -56,7 +56,7 @@
 			testLoader2.y = 100;
 			addChild(testLoader1);
 			addChild(testLoader2);
-*/			
+			
 			// Create buttons
 			buttonArray = new Array();
 			for ( var j=0; j<tmpNameArr.length; j++ ) {

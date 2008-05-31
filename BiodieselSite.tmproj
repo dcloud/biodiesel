@@ -10,13 +10,13 @@
 			<key>filename</key>
 			<string>classes/core/Main.as</string>
 			<key>lastUsed</key>
-			<date>2008-05-20T04:44:30Z</date>
+			<date>2008-05-25T15:42:23Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>classes/ui/NavButton.as</string>
 			<key>lastUsed</key>
-			<date>2008-05-20T04:44:30Z</date>
+			<date>2008-05-25T15:42:23Z</date>
 			<key>selected</key>
 			<true/>
 		</dict>
@@ -24,27 +24,13 @@
 			<key>filename</key>
 			<string>classes/util/Preloader.as</string>
 			<key>lastUsed</key>
-			<date>2008-05-18T04:10:52Z</date>
+			<date>2008-05-25T15:42:18Z</date>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
 	<integer>200</integer>
 	<key>metaData</key>
 	<dict>
-		<key>classes/core/Main.as</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>12</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>classes/ui/NavButton.as</key>
 		<dict>
 			<key>caret</key>
@@ -57,48 +43,47 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>52</integer>
 		</dict>
 		<key>classes/util/Preloader.as</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>18</integer>
 				<key>line</key>
-				<integer>71</integer>
+				<integer>7</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>41</integer>
+			<integer>3</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>68</integer>
+				<integer>0</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>line</key>
-				<integer>71</integer>
+				<integer>109</integer>
 			</dict>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>classes/core/Main.as</string>
 		<string>classes/ui/NavButton.as</string>
 		<string>classes/util/Preloader.as</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{10, 0}, {1002, 832}}</string>
+	<string>{{14, 0}, {1002, 832}}</string>
 </dict>
 </plist>
