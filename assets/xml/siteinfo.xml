@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site url="http://www.whatisbiodiesel.org/">
+	<info>
+		<assets>
+			<url type="relative"><![CDATA[assets]]></url>
+			<asset medium="swf">
+				<url type="relative"><![CDATA[swfmodules]]></url>				
+			</asset>
+		</assets>
+	</info>
+	<sections>
+		<section>
+			<title><![CDATA[Introduction]]></title>
+			<content source="internal" medium="text">
+				<data><![CDATA[Intro text goes here.]]></data>
+				<target><![CDATA[introPane]]></target>
+			</content>
+		</section>
+		<section>
+			<title><![CDATA[Making Biodiesel]]></title>
+			<content source="external" medium="swf">
+				<url><![CDATA[biodieselInfographic.swf]]></url>
+				<target><![CDATA[infographicPane]]></target>
+			</content>
+		</section>
+		<section>
+			<title><![CDATA[Sustainable Biodiesel]]></title>
+			<content source="external" medium="swf">
+				<url><![CDATA[movplayer.swf]]></url>
+				<target><![CDATA[videoPane]]></target>
+			</content>
+		</section>
+		<section>
+			<title><![CDATA[Comparing Alternatives]]></title>
+			<content source="external" medium="swf">
+				<url><![CDATA[alternatives.swf]]></url>
+				<target><![CDATA[alternativePane]]></target>
+			</content>
+		</section>
+</site>
