@@ -15,8 +15,10 @@ package classes.util{
 		private var refObject:Object;
 		private var callback:String;
 		
+		private var verbose:Boolean = false;
+	
 		public function Preloader(){
-			trace("Preloader created.");
+			if(verbose) trace("Preloader created.");
 			loaderArr = new Array();
 		}
 		
@@ -31,10 +33,6 @@ package classes.util{
 			currentLoader["loader"].load(newrequest);
 			
 			loaderArr.push(currentLoader);
-		};
-		
-		public function loadSite(pSiteRef:*):void{
-			configureListeners(pSiteRef.loaderInfo);
 		};
 		
 		private function configureListeners(dispatcher:IEventDispatcher):void {
@@ -57,34 +55,34 @@ package classes.util{
 					loaderArr[arrayPos]["refObject"][loaderArr[arrayPos]["callback"]]();
 				}
 			}else{
-/*				trace("loader is not in array");*/
+/*				if(verbose) trace("loader is not in array");*/
 			}
 		}
 
 		private function httpStatusHandler(event:HTTPStatusEvent):void {
-/*			trace("httpStatusHandler: " + event);*/
+/*			if(verbose) trace("httpStatusHandler: " + event);*/
 		}
 
 		private function initHandler(event:Event):void {
-/*			trace("initHandler: " + event);
-			trace("event.target: " + event.target);
-			trace("event.target.loader.callback = " + event.target.loader.callback);
+/*			if(verbose) trace("initHandler: " + event);
+			if(verbose) trace("event.target: " + event.target);
+			if(verbose) trace("event.target.loader.callback = " + event.target.loader.callback);
 */		}
 
 		private function ioErrorHandler(event:IOErrorEvent):void {
-			trace("ioErrorHandler: " + event);
+			if(verbose) trace("ioErrorHandler: " + event);
 		}
 
 		private function openHandler(event:Event):void {
-			trace("openHandler: " + event);
+			if(verbose) trace("openHandler: " + event);
 		}
 
 		private function progressHandler(event:ProgressEvent):void {
-			trace("progressHandler: bytesLoaded=" + event.bytesLoaded + " bytesTotal=" + event.bytesTotal);
+			if(verbose) trace("progressHandler: bytesLoaded=" + event.bytesLoaded + " bytesTotal=" + event.bytesTotal);
 		}
 
 		private function unLoadHandler(event:Event):void {
-			trace("unLoadHandler: " + event);
+			if(verbose) trace("unLoadHandler: " + event);
 		}
 		
 		private function findLoaderInArray(pLoader:Loader):*{

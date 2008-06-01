@@ -12,9 +12,13 @@
 	
 	public class NavButton extends SimpleButton{
 		private var labelText:String;
+		private var contentID:String = "";
+		
+		private var verbose:Boolean = false;
 		
 		public function NavButton(pName:String){
-			this.labelText = pName;
+			contentID = pName;
+			this.labelText = contentID;
 			upState = createUpState();
 			overState = createOverState();
 			downState = createDownState();
@@ -23,7 +27,7 @@
 			var embeddedFonts:Array = Font.enumerateFonts(false);
 			embeddedFonts.sortOn("fontName", Array.CASEINSENSITIVE);
 			for ( var i=0; i<embeddedFonts.length; i++ ) {
-				trace("embeddedFonts[" + i + "]: " + embeddedFonts[i].fontName);
+				if(verbose) trace("embeddedFonts[" + i + "]: " + embeddedFonts[i].fontName);
 			};
 		}
 		
@@ -96,7 +100,11 @@
 		};
 		
 		private function clickHandler(event:MouseEvent):void{
-			trace(this.labelText + " got click.");
+			/*if(verbose) */trace(contentID + " got click.");
+		};
+		
+		public function get id():String{
+			return this.contentID;
 		};
 	}
 }

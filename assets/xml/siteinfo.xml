@@ -6,35 +6,42 @@
 			<asset medium="swf">
 				<url type="relative"><![CDATA[swfmodules]]></url>				
 			</asset>
+			<asset medium="image">
+					<url type="relative"><![CDATA[img]]></url>
+			</asset>
 		</assets>
 	</info>
 	<sections>
 		<section>
 			<title><![CDATA[Introduction]]></title>
-			<content source="internal" medium="text">
+			<class><![CDATA[IntroPane]]></class>
+			<content loc="internal" medium="text">
 				<data><![CDATA[Intro text goes here.]]></data>
-				<target><![CDATA[introPane]]></target>
 			</content>
 		</section>
 		<section>
 			<title><![CDATA[Making Biodiesel]]></title>
-			<content source="external" medium="swf">
-				<url><![CDATA[biodieselInfographic.swf]]></url>
-				<target><![CDATA[infographicPane]]></target>
+			<class><![CDATA[InfographicPane]]></class>
+			<content loc="external" medium="swf">
+				<url><![CDATA[biodieselInfoGraphic.swf]]></url>
 			</content>
 		</section>
 		<section>
 			<title><![CDATA[Sustainable Biodiesel]]></title>
-			<content source="external" medium="swf">
+			<class><![CDATA[VideoPane]]></class>
+			<content loc="external" medium="swf">
 				<url><![CDATA[movplayer.swf]]></url>
-				<target><![CDATA[videoPane]]></target>
+			</content>
+			<content loc="internal" medium="text">
+				<data><![CDATA[Piedmont Biofuels. Tuesday night fuel-making nights. Waste Vegetable oil.]]></data>
 			</content>
 		</section>
 		<section>
 			<title><![CDATA[Comparing Alternatives]]></title>
-			<content source="external" medium="swf">
+			<class><![CDATA[AlternativePane]]></class>
+		<content loc="external" medium="swf">
 				<url><![CDATA[alternatives.swf]]></url>
-				<target><![CDATA[alternativePane]]></target>
 			</content>
 		</section>
+	</sections>
 </site>

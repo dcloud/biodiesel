@@ -9,9 +9,14 @@
     import flash.net.URLRequest;
 	
 	import classes.util.Preloader;
+	import classes.util.SiteXML;
 	import classes.ui.NavButton;
 		
 	public class Main extends Sprite{
+		private var getSiteXML:SiteXML;
+		private var sitexmlURL:String = "assets/xml/siteinfo.xml";
+		private var siteInfo:XML;
+		
 		private var bgLoader:Loader;
 		private var bgRequest:URLRequest;
 		private var preloader:Preloader;
@@ -21,21 +26,24 @@
 		
 		private var buttonArray:Array;
 		
-		private var tmpNameArr:Array;
+		private var verbose:Boolean = true;
+		
 		
 		private var testLoader1:Loader;
 		private var testLoader2:Loader;
 		
 		public function Main(){
-			trace("Hello World");
-			// temp name array should be replaced when XML loader is added
-			tmpNameArr = ["Introduction", "Making Biodiesel", "Sustainable Biodiesel", "Comparing Alternatives"];
+			addEventListener(MouseEvent.CLICK, handleMouseClick);
+			if(verbose) trace("Hello World");
+			getSiteXML = new SiteXML(sitexmlURL, this);
+			getSiteXML.addEventListener(Event.COMPLETE, siteXMLLoadedHandler);
 			
 			preloader = new Preloader();
 			bgLoader = new Loader();
+			
 			testLoader1 = new Loader();
 			testLoader2 = new Loader();
-			preloader.loadSite(this);
+
 			contentHider = new Sprite();
 			contentHider.graphics.beginFill(0xF1EFDE);
 			contentHider.graphics.drawRect(0,0, this.stage.stageWidth, this.stage.stageHeight);
@@ -45,6 +53,7 @@
 			contentRevealTween.addEventListener(TweenEvent.MOTION_START, tweenStarted);
 			contentRevealTween.addEventListener(TweenEvent.MOTION_RESUME, tweenStarted);
 			contentRevealTween.addEventListener(TweenEvent.MOTION_FINISH, tweenFinished);
+			
 			preloader.queueItemToLoad(bgURL, bgLoader, this, "backgroundLoaded");
 			addChildAt(bgLoader, 0);
 			/* test the preloader with a few sample images */
@@ -57,58 +66,75 @@
 			addChild(testLoader1);
 			addChild(testLoader2);
 			
-			// Create buttons
-			buttonArray = new Array();
-			for ( var j=0; j<tmpNameArr.length; j++ ) {
-				var newButton = new NavButton(tmpNameArr[j]);
-				newButton.name = "button" + j;
-				buttonArray[j] = newButton;
-			};
-			
-			for ( var b=0; b<buttonArray.length; b++ ) {
-				if (b ==0) {
-					buttonArray[b].x = 200;
-				}else{
-					buttonArray[b].x += buttonArray[b-1].x + buttonArray[b-1].width + 40;
-				}
-				buttonArray[b].y = 30;
-				addChild(buttonArray[b]);
-			};
-			
-/*			testButton = new NavButton("Sustainable Biodiesel");
-			addChild(testButton);
-			testButton.x = 100;
-			testButton.y = 100;
-			tst2 = new NavButton("Making Biodiesel");
-			addChild(tst2);
-			tst2.x = 100;
-			tst2.y = 140;
-*/			
 			addChild(contentHider);
 		};
 		
 		public function testcallback():void{
-			trace("Callback.");
+			if(verbose) trace("Callback.");
 		};
 		
 		private function garbageListener(event:Event):void{
 			// Display the amount of memory occupied by this program
 /*			trace("System memory used by this program: " + System.totalMemory);*/
-			trace("contentRevealTween.time: " + contentRevealTween.time);
+			if(verbose) trace("contentRevealTween.time: " + contentRevealTween.time);
+		};
+		
+		private function siteXMLLoadedHandler(e:Event):void{
+			if (verbose) trace("siteXMLLoadedHandler: " + e);
+			if (verbose) trace("e.target.xml.attribute('url'): " + e.target.xml.attribute("url"));
+			siteInfo = new XML();
+			siteInfo = e.target.xml;
+			if (siteInfo) {
+				trace("siteInfo: " + siteInfo.toXMLString());
+				createNavButtons();
+			}else{
+				if (verbose) trace("XML was not loaded, so can't generate rest of the site.");
+			}
+		};
+		
+		// Create buttons (after XML has been loaded)
+		private function createNavButtons():void{
+			buttonArray = new Array();
+			var j:int =0;
+			for each ( var section:XML in siteInfo.sections.section ){
+				trace("section.title: " + section.title);
+				var newButton = new NavButton(section.title);
+				newButton.name = "button" + j;
+				buttonArray[j] = newButton;
+				if (j == 0) {
+					buttonArray[j].x = 200;
+				}else{
+					buttonArray[j].x += buttonArray[j-1].x + buttonArray[j-1].width + 40;
+					
+				}
+				buttonArray[j].y = 30;
+				addChildAt(buttonArray[j], getChildIndex(contentHider));
+				j++;
+			};
+		};
+		
+		private function handleMouseClick(e:MouseEvent):void{
+			if(verbose) trace("handleMouseClick e: " + e);
+			if (e.target instanceof NavButton) {
+				if(verbose) trace("e.target is NavButton");
+				if(verbose) trace("e.target.id: " + e.target.id);
+			}else{
+				if(verbose) trace("e.target NOT NavButton");
+			}
 		};
 		
 		public function backgroundLoaded():void{
-			trace("background loaded");
+			if(verbose) trace("background loaded");
 			contentRevealTween.start();
-			trace("contentRevealTween.position: " + contentRevealTween.position);
+			if(verbose) trace("contentRevealTween.position: " + contentRevealTween.position);
 		};
 		
 		public function tweenStarted(event:TweenEvent):void{
-			trace("tweenStarted");
+			if(verbose) trace("tweenStarted");
 		};
 		
 		private function tweenFinished(event:TweenEvent):void{
-			trace("tweenFinished target: " + event.target);
+			if(verbose) trace("tweenFinished target: " + event.target);
 			removeChild(event.target.obj);
 		};
 	}
