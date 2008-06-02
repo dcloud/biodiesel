@@ -10,34 +10,57 @@
 package	classes.core{
 	import flash.display.MovieClip;
 	import flash.events.*;
+	import classes.events.AnimEvent;
 
 	public class Animatable extends MovieClip{
-		private var verbose:Boolean = true;
+		protected var verbose:Boolean = true;
 		
-		private var seekToLabel:String;
+		protected var seek_to_label:String;
+		protected var target_mc:MovieClip;
+		protected var dataObj:Object;
 		
 		public function Animatable(){
-
+			this.stop();
+			dataObj = new Object();
 		}
 		
-		private function playToLabel(pLabel:String, target_mc:MovieClip):void{
-			seekToLabel = pLabel;
-			target_mc.addEventListener(Event.ENTER_FRAME, checkFrameLabel);
+		protected function setDataArray(pLabel:String, pTarget:MovieClip):void{
+			seek_to_label = pLabel;
+			target_mc = pTarget;
+			dataObj["target_mc"] = target_mc;
+			dataObj["label"] = seek_to_label;
 		};
 		
-		private function labelReached(pLabel:String, target_mc:MovieClip):void{
-			trace("labelReached >> pLabel: " + pLabel);
-		};
-		
-		private function checkFrameLabel(e:Event):void{
-			if (verbose) {
-				trace("e.target.name: " + e.target.name);
-				trace("e.target.currentLabel: " + e.target.currentLabel);
+		protected function playToLabel(pLabel:String, pTarget:MovieClip):void{
+			setDataArray(pLabel, pTarget);
+			if (target_mc.currentLabel != seek_to_label) {
+				target_mc.addEventListener(Event.ENTER_FRAME, checkFrameLabel);
+				target_mc.play();
 			}
-			if (e.target.currentLabel == seekToLabel) {
-				e.target.stop();
-				e.target.removeEventListener(Event.ENTER_FRAME, checkFrameLabel);
-				labelReached(e.target.currentLabel, MovieClip(e.target));
+		};
+		
+		protected function goToLabel(pLabel:String, pTarget:MovieClip):void{
+			setDataArray(pLabel, pTarget);
+			if (verbose) trace("target_mc: " + target_mc.name);
+			target_mc.gotoAndStop(seek_to_label);
+		};
+		
+		protected function labelReached():void{
+			if (verbose) trace("labelReached >> seek_to_label: " + seek_to_label);
+			dispatchEvent(new AnimEvent(AnimEvent.ANIMATION_COMPLETE, false, false, dataObj));
+		};
+		
+		protected function checkFrameLabel(e:Event):void{
+			if (verbose) {
+				trace("target_mc.name: " + target_mc.parent.name + "." + target_mc.name);
+				trace("target_mc.currentLabel: " + target_mc.currentLabel);
+				trace("seek_to_label: " + seek_to_label);
+			}
+			if (target_mc.currentLabel == seek_to_label) {
+				if (verbose) trace(target_mc.name + ".stop();");
+				target_mc.stop();
+				target_mc.removeEventListener(Event.ENTER_FRAME, checkFrameLabel);
+				labelReached();
 			}
 		};
 	}
