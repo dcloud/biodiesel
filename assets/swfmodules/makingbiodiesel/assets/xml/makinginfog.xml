@@ -1,51 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <infographic>
-	<title>Making Biodiesel</title>
+	<title><![CDATA[Making Biodiesel]]></title>
 	<sections>
-		<section>
+		<section id="1.1">
+			<title><![CDATA[Overview]]></title>
+			<text><![CDATA[Biodiesel fuel is made by chemically altering a vegetable oil or animal fat to reduce the viscosity, or the thickness, of the fluid to allow it to run in a regular diesel engine. This presentation explains the basic steps of producing biodiesel from start to finish, including the chemical reaction process called transesterification.]]></text>
+		</section>
+		<section id="2.1">
 			<title><![CDATA[Preparation of oil]]></title>
 			<text><![CDATA[Though you can make biodiesel from virgin vegetable oils or animal fats, most homebrewers use waste oils such as used cooking oil. It is important to remove water and other impurities in the oil since that helps ensure the quality of the finished product.]]></text>
-			<assets>
-				<asset position="left">
-					<name><![CDATA[oilTank_mc]]></name>
-				</asset>
-				<asset position="right">
-					<name><![CDATA[reactorTank_mc]]></name>
-				</asset>
-			</assets>
-			<animation type="concurrent">
-				<asset>
-					<name><![CDATA[oilTank_mc]]></name>
-					<keyframe motion="goto">
-						<label><![CDATA[BEGINNING]]></label>
-					</keyframe>
-				</asset>
-				<asset>
-					<name><![CDATA[reactorTank_mc]]></name>
-					<keyframe motion="goto">
-						<label><![CDATA[BEGINNING]]></label>
-					</keyframe>
-				</asset>
-			</animation>
 		</section>
-		<section>
+		<section id="2.2">
 			<title><![CDATA[Heat oil]]></title>
 			<text><![CDATA[Heating the vegetable oil to around 120ºF will speed up the reaction, reducing the time needed for the reaction to complete from between four and eight hours to one or two hours.]]></text>
-			<assets>
-				<asset position="left">
-					<name><![CDATA[oilTank_mc]]></name>
-				</asset>
-				<asset position="right">
-					<name><![CDATA[reactorTank_mc]]></name>
-				</asset>
 		</section>		
-					<animation type="sequential">
-						<name><![CDATA[oilTank_mc]]></name>
-						<keyframe motion="playto">
-							<label><![CDATA[INSIDES]]></label>
-						</keyframe>
-					</animation>
-				</part>
-			</parts>
+		<section id="3.1">
+			<title><![CDATA[The chemical process]]></title>
+			<text><![CDATA[Oil and fat are made up of fatty acids and glycerol, a viscous alcohol. In transesterification, another alcohol, typically methanol, is introduced to the oil, and the glycerol breaks away from the fatty acids, and the fatty acids bond with the new alcohol to form biodiesel. Potassium hydroxide is frequently used as a catalyst, which means that it increases the rate of the reaction, but is not used up in the reaction. While the reaction can technically occur without a catalyst, the amount of heat and excess alcohol needed make it impractical to perform the transesterification without one.]]></text>
+		</section>		
 	</sections>
 </infographic>

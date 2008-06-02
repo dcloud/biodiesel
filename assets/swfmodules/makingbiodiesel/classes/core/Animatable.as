@@ -10,7 +10,7 @@
 package	classes.core{
 	import flash.display.MovieClip;
 	import flash.events.*;
-	import classes.events.AnimEvent;
+	import classes.events.InfogEvent;
 
 	public class Animatable extends MovieClip{
 		protected var verbose:Boolean = true;
@@ -23,13 +23,6 @@ package	classes.core{
 			this.stop();
 			dataObj = new Object();
 		}
-		
-		protected function setDataArray(pLabel:String, pTarget:MovieClip):void{
-			seek_to_label = pLabel;
-			target_mc = pTarget;
-			dataObj["target_mc"] = target_mc;
-			dataObj["label"] = seek_to_label;
-		};
 		
 		protected function playToLabel(pLabel:String, pTarget:MovieClip):void{
 			setDataArray(pLabel, pTarget);
@@ -45,9 +38,16 @@ package	classes.core{
 			target_mc.gotoAndStop(seek_to_label);
 		};
 		
+		protected function setDataArray(pLabel:String, pTarget:MovieClip):void{
+			seek_to_label = pLabel;
+			target_mc = pTarget;
+			dataObj["target_mc"] = target_mc;
+			dataObj["label"] = seek_to_label;
+		};
+		
 		protected function labelReached():void{
 			if (verbose) trace("labelReached >> seek_to_label: " + seek_to_label);
-			dispatchEvent(new AnimEvent(AnimEvent.ANIMATION_COMPLETE, false, false, dataObj));
+			dispatchEvent(new InfogEvent(InfogEvent.ANIMATION_COMPLETE, false, false, dataObj));
 		};
 		
 		protected function checkFrameLabel(e:Event):void{
