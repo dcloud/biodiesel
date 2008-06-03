@@ -2,21 +2,53 @@
 <infographic>
 	<title><![CDATA[Making Biodiesel]]></title>
 	<sections>
-		<section id="1.1">
+		<section id="overview">
 			<title><![CDATA[Overview]]></title>
 			<text><![CDATA[Biodiesel fuel is made by chemically altering a vegetable oil or animal fat to reduce the viscosity, or the thickness, of the fluid to allow it to run in a regular diesel engine. This presentation explains the basic steps of producing biodiesel from start to finish, including the chemical reaction process called transesterification.]]></text>
 		</section>
-		<section id="2.1">
+		<section id="preparation">
 			<title><![CDATA[Preparation of oil]]></title>
-			<text><![CDATA[Though you can make biodiesel from virgin vegetable oils or animal fats, most homebrewers use waste oils such as used cooking oil. It is important to remove water and other impurities in the oil since that helps ensure the quality of the finished product.]]></text>
+			<text><![CDATA[Though you can make biodiesel from virgin vegetable oils or animal fats, most homebrewers make biodiesel from used oils such as used cooking oil. Non-oil particles and water must be filtered out before moving the oil into the vessel where the oil will be made into biodiesel.]]></text>
 		</section>
-		<section id="2.2">
+		<section id="heatoil">
 			<title><![CDATA[Heat oil]]></title>
 			<text><![CDATA[Heating the vegetable oil to around 120ºF will speed up the reaction, reducing the time needed for the reaction to complete from between four and eight hours to one or two hours.]]></text>
 		</section>		
-		<section id="3.1">
+		<section id="chemicalprocess">
 			<title><![CDATA[The chemical process]]></title>
-			<text><![CDATA[Oil and fat are made up of fatty acids and glycerol, a viscous alcohol. In transesterification, another alcohol, typically methanol, is introduced to the oil, and the glycerol breaks away from the fatty acids, and the fatty acids bond with the new alcohol to form biodiesel. Potassium hydroxide is frequently used as a catalyst, which means that it increases the rate of the reaction, but is not used up in the reaction. While the reaction can technically occur without a catalyst, the amount of heat and excess alcohol needed make it impractical to perform the transesterification without one.]]></text>
+			<text><![CDATA[Oil and fat are made up of fatty acids and glycerol, a viscous alcohol. In transesterification another alcohol, typically methanol, is introduced to the oil, and the glycerol breaks away from the fatty acids, and the fatty acids bond with the new alcohol to form biodiesel. Potassium hydroxide is frequently used as a catalyst, which means that it increases the rate of the reaction, but is not used up in the reaction. While the reaction can technically occur without a catalyst, the amount of heat and excess alcohol needed make it impractical to perform the transesterification without one.]]></text>
+		</section>		
+		<section id="titration">
+			<title><![CDATA[Test titration]]></title>
+			<text><![CDATA[Before starting the transesterification process on a large batch of waste oil, you will want to perform a titration. Titration is a test that indicates the amount of free fatty acids in waste oil. Free fatty acids will react during transesterification, reducing the amount of oil that gets made into biodiesel, so a titration will help determine how much extra catalyst is needed to ensure a more complete reaction.]]></text>
+		</section>		
+		<section id="makemethoxide">
+			<title><![CDATA[Make methoxide]]></title>
+			<text><![CDATA[After titrating to determine how much catalyst is needed, the catalyst is mixed with the alcohol. Mixing potassium hydroxide with methanol will create methoxide.]]></text>
+		</section>		
+		<section id="mixmethoxide">
+			<title><![CDATA[Mix methoxide into oil]]></title>
+			<text><![CDATA[After the oil has been heated and the methoxide mixed, it is time to introduce the methoxide into the oil. This is usually achieved by slowly spraying methoxide slowly into the reaction tank as the oil is being mixed constantly to help spread the reaction throughout the tank. Introducing the methoxide slowly helps the methoxide to react fully with the oil. During this phase, the transesterifcation process is taking place, and biodiesel and glycerol are being created. The reaction should be complete after one to two hours]]></text>
+		</section>		
+		<section id="separation">
+			<title><![CDATA[Let biodiesel separate from glycerol]]></title>
+			<text><![CDATA[After the reaction is complete, the biodiesel and glyrcerol products are left in the reactor tank to separate and settle. Glycerol is heavier than biodiesel and will sink to the bottom of the tank while the biodiesel floats on top. The tank can be left alone for eight hours to allow for separation to fully take place.]]></text>
+		</section>		
+		<section id="drainglycerol">
+			<title><![CDATA[Drain glycerol]]></title>
+			<text><![CDATA[To remove the glycerol from the biodiesel, a valve at the bottom of the reaction tank is opened and the glycerol is drained out. Glycerol is cloudy in appearance whereas biodiesel is translucent, so the draining liquid is monitored for the change from cloudy to translucent, indicating that all of the glycerol has been removed.]]></text>
+		</section>		
+		<section id="washbiodiesel">
+			<title><![CDATA[Transfer biodiesel to tank for washing]]></title>
+			<text><![CDATA[Biodiesel is washed after the reaction to remove unreacted oil, free fatty acids, and the leftover methoxide. Water is sprayed on top of the biodiesel which then moves through the biodiesel, pushing out the impurities in the fuel. After washing the fuel and letting the water separate from the biodiesel, the wash water is then drained out. Fuel washing is often done more than once in order to further refine the quality of the fuel.]]></text>
+		</section>		
+		<section id="drybiodiesel">
+			<title><![CDATA[Remove wash water]]></title>
+			<text><![CDATA[Need text on drying.]]></text>
+		</section>		
+		<section id="results">
+			<title><![CDATA[The results]]></title>
+			<text><![CDATA[The biodiesel is now ready to be put into the tank of any car with a diesel engine. In colder weather, biodiesel is mixed with petroleum diesel to ensure the fuel does not gel in the cold. Commercial biodiesel is always mixed into petrodiesel, and is often sold in a mixture of 20% biodiesel to 80% petrodiesel, known as B20 biodiesel. Biodiesel homebrewers often run their diesel engines on pure biodiesel, or B100, especially in warmer climates.]]></text>
 		</section>		
 	</sections>
 </infographic>

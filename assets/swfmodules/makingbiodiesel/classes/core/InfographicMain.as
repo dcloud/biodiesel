@@ -23,18 +23,27 @@ package classes.core{
 		private var xmlFile:String = "assets/xml/makinginfog.xml";
 		private var xmlInfo:XML;
 		
+		private var sectionsArr:Array;
+		private var currentSection:String;
+		
 		public function InfographicMain(){
 			xmlLoader = new InfogXML(xmlFile, this);
 			xmlLoader.addEventListener(Event.COMPLETE, xmlLoaded);
 			addEventListener(Event.ADDED_TO_STAGE, stageAdded);
 			addEventListener(InfogEvent.ANIMATION_COMPLETE, reachedLabel);
+			sectionsArr = new Array();
 		}
 		
 		private function xmlLoaded(e:Event):void{
 			xmlInfo = e.target.xml;
-			if (verbose) trace("xmlInfo: " + xmlInfo);
+/*			if (verbose) trace("xmlInfo: " + xmlInfo);*/
+			if (verbose) trace("xmlLoaded...");
+			for each ( var sectionID in  xmlInfo.sections.section.@id){
+				sectionsArr.push(sectionID);
+			};
+			currentSection = "overview";
 			// Once xml is loaded, go to the first label we want to see
-			playToLabel("1.1", this); // *** shall change to 1.1 ***
+			playToLabel(currentSection, this); // *** shall change to 1.1 ***
 		};
 		
 		private function stageAdded(e:Event):void{
@@ -51,10 +60,10 @@ package classes.core{
 					trace("e.data[" + item + "]: " + e.data[item]);
 				};
 			}
-			var currentLabel:String = e.data["label"];
-			var newBody:String = xmlInfo.sections.section.(@id.toString() == currentLabel).text;
-			var newTitle:String = xmlInfo.sections.section.(@id.toString() == currentLabel).title;
-			trace("Text for this section: " + newBody);
+			currentSection = e.data["label"];
+			var newBody:String = xmlInfo.sections.section.(@id.toString() == currentSection).text;
+			var newTitle:String = xmlInfo.sections.section.(@id.toString() == currentSection).title;
+/*			trace("Text for this section: " + newBody);*/
 			textpane_sprite.setText(newTitle, newBody);
 /*			textpane_sprite.title = newTitle;
 			textpane_sprite.body = newBody;
@@ -64,7 +73,7 @@ package classes.core{
 			Handle Nav related mouse events
 		*/
 		private function handleNavRollOver(e:InfogEvent):void{
-			if (verbose) trace("rolled over: " + e.data);
+/*			if (verbose) trace("rolled over: " + e.data);*/
 			var buttonLabel:String = e.data.toString();
 			var buttonTitle:String = xmlInfo.sections.section.(@id.toString() == buttonLabel).title;
 			setNavText(buttonTitle);
@@ -78,11 +87,38 @@ package classes.core{
 		private function handleNavClick(e:InfogEvent):void{
 /*			var chosenLabel:String =  e.data.toString();*/
 			if (verbose) trace("Heard NavButton: " + e.data);
-			playToLabel(e.data.toString(), this); // *** shall
+			var chosenSection:String = e.data.toString();
+			var chosenPos:int = findInSectionsArray(chosenSection);
+			var currentPos:int = findInSectionsArray(currentSection);
+			if (verbose) {
+				trace("chosenSection: " + chosenSection);
+				trace("chosenPos: " + chosenPos);
+				trace("currentSection: " + currentSection);
+				trace("currentPos: " + currentPos);
+			}
+			if (chosenSection != currentSection) {
+				if (chosenPos == currentPos + 1) {
+					playToLabel(chosenSection, this);					
+				}else{
+					goToLabel(chosenSection,this);
+				}
+			}
+			
 		};
 		
 		private function setNavText(pTitle:String):void{
 			rollover_tf.text = pTitle;
+		};
+		
+		private function findInSectionsArray(pSectionName:String):int{
+			var itemPos:int = -1;
+			for ( var j=0; j<sectionsArr.length; j++ ) {
+				if (sectionsArr[j] == pSectionName) {
+					itemPos = j;
+					return itemPos;
+				}
+			};
+			return itemPos;
 		};		
 	}
 }

@@ -13,7 +13,7 @@ package	classes.core{
 	import classes.events.InfogEvent;
 
 	public class Animatable extends MovieClip{
-		protected var verbose:Boolean = true;
+		protected var verbose:Boolean = false;
 		
 		protected var seek_to_label:String;
 		protected var target_mc:MovieClip;
@@ -26,6 +26,7 @@ package	classes.core{
 		
 		protected function playToLabel(pLabel:String, pTarget:MovieClip):void{
 			setDataArray(pLabel, pTarget);
+			if (verbose) trace("playToLabel: " + seek_to_label);
 			if (target_mc.currentLabel != seek_to_label) {
 				target_mc.addEventListener(Event.ENTER_FRAME, checkFrameLabel);
 				target_mc.play();
@@ -34,8 +35,9 @@ package	classes.core{
 		
 		protected function goToLabel(pLabel:String, pTarget:MovieClip):void{
 			setDataArray(pLabel, pTarget);
-			if (verbose) trace("target_mc: " + target_mc.name);
+			if (verbose) trace("goToLabel: " + seek_to_label);
 			target_mc.gotoAndStop(seek_to_label);
+			labelReached();
 		};
 		
 		protected function setDataArray(pLabel:String, pTarget:MovieClip):void{

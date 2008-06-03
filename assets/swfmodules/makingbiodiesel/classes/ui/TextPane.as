@@ -8,6 +8,7 @@
 package	classes.ui{
 	import flash.display.Sprite;
 	import flash.text.TextField;
+	import flash.text.TextFormat;
 	import fl.transitions.Tween;
 	import fl.transitions.easing.*;
 	import fl.transitions.TweenEvent;
@@ -18,13 +19,18 @@ package	classes.ui{
 				textfields_sp.title_tf:TextField;
 				textfields_sp.body_tf:TextField;
 		*/
+		private var bodyFormat:TextFormat;
 		private var bodyTxt:String = "";
 		private var titleTxt:String = "";
 		private var tfTween:Tween;
-		private const tweenTime:Number = .75;
+		private const tweenTime:Number = .5;
 		private const useSeconds:Boolean = true;
 		
 		public function TextPane(){
+			bodyFormat = new TextFormat();
+			bodyFormat.kerning = true;
+			bodyFormat.letterSpacing = .6;
+			textfields_sp.body_tf.defaultTextFormat = bodyFormat;
 			tfTween = new Tween(textfields_sp, "alpha", Strong.easeOut, 1, 1, tweenTime, useSeconds);
 			tfTween.addEventListener(TweenEvent.MOTION_FINISH, handleTweenComplete);
 		}

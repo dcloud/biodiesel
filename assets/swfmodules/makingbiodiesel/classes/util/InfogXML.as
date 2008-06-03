@@ -34,7 +34,7 @@ package classes.util{
 		private function loadCompleteHandler(e:Event):void{
 			if(verbose) trace(e);
 			xmlObject = new XML(urlLoader.data);
-			if(verbose) trace(xmlObject.toXMLString());
+/*			if(verbose) trace(xmlObject.toXMLString());*/
 			dispatchEvent(new Event(Event.COMPLETE));
 		};
 		
