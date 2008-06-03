@@ -12,6 +12,7 @@ package classes.events {
 		public static const NAV_OVER:String = "nav_over";
 		public static const NAV_OUT:String = "nav_out";
 		public static const NAV_CLICK:String = "nav_click";
+		public static const REGISTER_BUTTON = "register_button"
 		
 		public var data:Object;
 		

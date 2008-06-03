@@ -9,29 +9,37 @@ package classes.core{
 	import flash.display.MovieClip;
 	import flash.events.*;
 	import classes.events.InfogEvent;
-	import classes.core.Animatable;
+	import classes.ui.NavButton;
 	import classes.util.InfogXML;
 	
-	public class InfographicMain extends Animatable{
+	public class InfographicMain extends MovieClip{
 		/*
 			//// Author time elements ////
 				(everything visual, essentially)
 				textpane_sprite:TextPane;
 				navarea_mc:NavPane;
 		*/
+		private var verbose:Boolean = true;
+		
+		private var seek_to_label:String;
+		
 		private var xmlLoader:InfogXML;
 		private var xmlFile:String = "assets/xml/makinginfog.xml";
 		private var xmlInfo:XML;
 		
 		private var sectionsArr:Array;
+		private var buttonArr:Array;
 		private var currentSection:String;
 		
 		public function InfographicMain(){
+			this.stop();
+			
 			xmlLoader = new InfogXML(xmlFile, this);
 			xmlLoader.addEventListener(Event.COMPLETE, xmlLoaded);
 			addEventListener(Event.ADDED_TO_STAGE, stageAdded);
 			addEventListener(InfogEvent.ANIMATION_COMPLETE, reachedLabel);
 			sectionsArr = new Array();
+			buttonArr = new Array();
 		}
 		
 		private function xmlLoaded(e:Event):void{
@@ -40,10 +48,11 @@ package classes.core{
 			if (verbose) trace("xmlLoaded...");
 			for each ( var sectionID in  xmlInfo.sections.section.@id){
 				sectionsArr.push(sectionID);
+				buttonArr.push(sectionID + "_btn"); // can do this since I'm already enforcing a naming convention for NavButton
 			};
 			currentSection = "overview";
 			// Once xml is loaded, go to the first label we want to see
-			playToLabel(currentSection, this); // *** shall change to 1.1 ***
+			playToLabel(currentSection); // *** shall change to 1.1 ***
 		};
 		
 		private function stageAdded(e:Event):void{
@@ -51,23 +60,6 @@ package classes.core{
 			addEventListener(InfogEvent.NAV_OUT, handleNavRollOut);
 			addEventListener(InfogEvent.NAV_CLICK, handleNavClick);
 		};
-		
-		private function reachedLabel(e:InfogEvent):void{
-			if (verbose) {
-				trace("e: " + e);
-				trace("e.target: " + e.target);
-				for ( var item in e.data ){
-					trace("e.data[" + item + "]: " + e.data[item]);
-				};
-			}
-			currentSection = e.data["label"];
-			var newBody:String = xmlInfo.sections.section.(@id.toString() == currentSection).text;
-			var newTitle:String = xmlInfo.sections.section.(@id.toString() == currentSection).title;
-/*			trace("Text for this section: " + newBody);*/
-			textpane_sprite.setText(newTitle, newBody);
-/*			textpane_sprite.title = newTitle;
-			textpane_sprite.body = newBody;
-*/		};
 		
 		/*
 			Handle Nav related mouse events
@@ -96,11 +88,12 @@ package classes.core{
 				trace("currentSection: " + currentSection);
 				trace("currentPos: " + currentPos);
 			}
+						
 			if (chosenSection != currentSection) {
 				if (chosenPos == currentPos + 1) {
-					playToLabel(chosenSection, this);					
+					playToLabel(chosenSection);					
 				}else{
-					goToLabel(chosenSection,this);
+					goToLabel(chosenSection);
 				}
 			}
 			
@@ -119,6 +112,50 @@ package classes.core{
 				}
 			};
 			return itemPos;
-		};		
+		};
+		
+		private function setButtonsSelection(p_selection:String):void{
+			// Tell each button what was selected
+			for ( var m=0; m<buttonArr.length; m++ ) {
+				this[buttonArr[m]].setSelection(p_selection);
+			};
+		};
+			
+		private function playToLabel(pLabel:String):void{
+			seek_to_label = pLabel;
+			if (verbose) trace("playToLabel: " + seek_to_label);
+			if (this.currentLabel != seek_to_label) {
+				this.addEventListener(Event.ENTER_FRAME, checkFrameLabel);
+				this.play();
+			}
+		};
+		
+		private function goToLabel(pLabel:String):void{
+			seek_to_label = pLabel;
+			if (verbose) trace("goToLabel: " + seek_to_label);
+			this.gotoAndStop(seek_to_label);
+			reachedLabel();
+		};
+
+		private function reachedLabel():void{
+			currentSection = seek_to_label;
+			setButtonsSelection(currentSection);
+			var newBody:String = xmlInfo.sections.section.(@id.toString() == currentSection).text;
+			var newTitle:String = xmlInfo.sections.section.(@id.toString() == currentSection).title;
+			textpane_sprite.setText(newTitle, newBody);
+		};
+
+		private function checkFrameLabel(e:Event):void{
+			if (verbose) {
+				trace("this.currentLabel: " + this.currentLabel);
+				trace("seek_to_label: " + seek_to_label);
+			}
+			if (currentLabel == seek_to_label) {
+				if (verbose) trace(this.name + ".stop();");
+				this.stop();
+				this.removeEventListener(Event.ENTER_FRAME, checkFrameLabel);
+				reachedLabel();
+			}
+		};
 	}
 }
