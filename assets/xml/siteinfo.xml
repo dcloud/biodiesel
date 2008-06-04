@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site url="http://www.whatisbiodiesel.org/">
 	<info>
-		<assets>
-			<url type="relative"><![CDATA[assets]]></url>
-			<asset medium="swf">
-				<url type="relative"><![CDATA[swfmodules]]></url>				
-			</asset>
-			<asset medium="image">
-					<url type="relative"><![CDATA[img]]></url>
-			</asset>
+		<assets url="assets/">
+			<asset medium="swf" url="swfmodules/" />
+			<asset medium="image" url="img/" />
 		</assets>
 	</info>
 	<sections>
@@ -23,7 +18,7 @@
 			<title><![CDATA[Making Biodiesel]]></title>
 			<class><![CDATA[InfographicPane]]></class>
 			<content loc="external" medium="swf">
-				<url><![CDATA[biodieselInfoGraphic.swf]]></url>
+				<url><![CDATA[makingbiodiesel/biodieselInfoGraphic.swf]]></url>
 			</content>
 		</section>
 		<section>

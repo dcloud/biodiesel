@@ -1,11 +1,7 @@
 ﻿package classes.core{
 	import flash.display.Loader;
     import flash.display.Sprite;
-	import fl.transitions.Tween;
-	import fl.transitions.TweenEvent;
-	import fl.transitions.easing.*;
     import flash.events.*;
-	import flash.system.System;
     import flash.net.URLRequest;
 	
 	import classes.util.Preloader;
@@ -13,70 +9,43 @@
 	import classes.ui.NavButton;
 		
 	public class Main extends Sprite{
+		private const topMargin:Number = 85; // a design decision has everything at y= topMargin or lower
+		
 		private var getSiteXML:SiteXML;
 		private var sitexmlURL:String = "assets/xml/siteinfo.xml";
 		private var siteInfo:XML;
+		
+		private var siteURL:String;
+		private var assetsURLs:Object;
+		private var loadedAssets:Array;
 		
 		private var bgLoader:Loader;
 		private var bgRequest:URLRequest;
 		private var preloader:Preloader;
 		private var bgURL:String = "assets/img/bg_texture.jpg";
-		private var contentHider:Sprite;
-		private var contentRevealTween:Tween;
 		
 		private var buttonArray:Array;
 		
 		private var verbose:Boolean = true;
 		
-		
-		private var testLoader1:Loader;
-		private var testLoader2:Loader;
-		
 		public function Main(){
+			preloader = new Preloader();
+			preloader.addEventListener(Event.INIT, preloadedItemInit);
+			
 			addEventListener(MouseEvent.CLICK, handleMouseClick);
+			addEventListener(Event.ADDED, displayListAdd);
 			if(verbose) trace("Hello World");
 			getSiteXML = new SiteXML(sitexmlURL, this);
 			getSiteXML.addEventListener(Event.COMPLETE, siteXMLLoadedHandler);
-			
-			preloader = new Preloader();
+						
 			bgLoader = new Loader();
+						
+			assetsURLs = new Object();
+			loadedAssets = new Array();
 			
-			testLoader1 = new Loader();
-			testLoader2 = new Loader();
-
-			contentHider = new Sprite();
-			contentHider.graphics.beginFill(0xF1EFDE);
-			contentHider.graphics.drawRect(0,0, this.stage.stageWidth, this.stage.stageHeight);
-			contentRevealTween = new Tween(contentHider, "alpha", Regular.easeOut, 100, 0, 1.5, true);
-			contentRevealTween.stop();
-			contentRevealTween.rewind();
-			contentRevealTween.addEventListener(TweenEvent.MOTION_START, tweenStarted);
-			contentRevealTween.addEventListener(TweenEvent.MOTION_RESUME, tweenStarted);
-			contentRevealTween.addEventListener(TweenEvent.MOTION_FINISH, tweenFinished);
-			
-			preloader.queueItemToLoad(bgURL, bgLoader, this, "backgroundLoaded");
 			addChildAt(bgLoader, 0);
-			/* test the preloader with a few sample images */
-			preloader.queueItemToLoad("testloaderassets/2093869943_ea17832cfc_o.jpg", testLoader1, this);
-			preloader.queueItemToLoad("testloaderassets/2093870245_1a64740b13_o.jpg", testLoader2, this);
-			testLoader1.x = 10;
-			testLoader1.y = 100;
-			testLoader2.x = 30;
-			testLoader2.y = 100;
-			addChild(testLoader1);
-			addChild(testLoader2);
-			
-			addChild(contentHider);
-		};
-		
-		public function testcallback():void{
-			if(verbose) trace("Callback.");
-		};
-		
-		private function garbageListener(event:Event):void{
-			// Display the amount of memory occupied by this program
-/*			trace("System memory used by this program: " + System.totalMemory);*/
-			if(verbose) trace("contentRevealTween.time: " + contentRevealTween.time);
+			addChild(preloader);
+			preloader.queueItemToLoad(bgURL, bgLoader, true);
 		};
 		
 		private function siteXMLLoadedHandler(e:Event):void{
@@ -85,10 +54,29 @@
 			siteInfo = new XML();
 			siteInfo = e.target.xml;
 			if (siteInfo) {
-				trace("siteInfo: " + siteInfo.toXMLString());
 				createNavButtons();
+				getURLInfo();
 			}else{
 				if (verbose) trace("XML was not loaded, so can't generate rest of the site.");
+			}
+		};
+		
+		private function displayListAdd(e:Event):void{
+		};
+		
+		// Get url info for this site
+		private function getURLInfo():void{
+			siteURL = siteInfo.@url ? siteInfo.@url : null;
+			if (verbose) trace("siteURL: " + siteURL);
+			if(siteInfo.info.assets.asset){
+				if (verbose) trace("siteInfo has assets urls. Save in object");
+				for each ( var item:XML in siteInfo.info.assets.asset){
+					if (verbose) {
+						trace("asset url: " + item.@url);
+					}
+					assetsURLs[item.@medium] = siteInfo.info.assets.@url + item.@url;
+					if (verbose) trace("assetsURLs[" + item.@medium + "] " + assetsURLs[item.@medium]);
+				};
 			}
 		};
 		
@@ -108,34 +96,59 @@
 					
 				}
 				buttonArray[j].y = 30;
-				addChildAt(buttonArray[j], getChildIndex(contentHider));
+				var preloaderIndex:int = getChildIndex(preloader);
+				addChildAt(buttonArray[j], preloaderIndex);
+				if (verbose) {
+					trace("preloaderIndex before addChild: " + preloaderIndex);
+					trace("preloader index after addChild: " + getChildIndex(preloader));
+					trace("buttonArray[j] index: " + getChildIndex(buttonArray[j]));
+					trace("numChildren: " + this.numChildren);
+				}
 				j++;
 			};
 		};
 		
 		private function handleMouseClick(e:MouseEvent):void{
 			if(verbose) trace("handleMouseClick e: " + e);
-			if (e.target instanceof NavButton) {
-				if(verbose) trace("e.target is NavButton");
-				if(verbose) trace("e.target.id: " + e.target.id);
+			if (e.target is NavButton) {
+				if(verbose) {
+					trace("e.target is NavButton");
+					trace("e.target.id: " + e.target.id);
+					trace("Load: " + siteInfo.sections.section.(title == e.target.id).content.url);
+				}
+				loadSectionContent(e.target.id);
 			}else{
 				if(verbose) trace("e.target NOT NavButton");
 			}
 		};
 		
-		public function backgroundLoaded():void{
-			if(verbose) trace("background loaded");
-			contentRevealTween.start();
-			if(verbose) trace("contentRevealTween.position: " + contentRevealTween.position);
+		private function loadSectionContent(p_contentID):void{
+			var sectionInfo:XMLList = siteInfo.sections.section.(title == p_contentID);
+			if (verbose) {
+				trace("sectionInfo.content.url: " + sectionInfo.content.url);
+				trace("sectionInfo.content.length: " + sectionInfo.content.length);
+			}
+			if (sectionInfo.content.@loc.toString() == "external") {
+				if (verbose) trace("external content");
+				var tmpLoader:Loader = new Loader();
+				var assetloc:String = assetsURLs[sectionInfo.content.@medium];
+				var tmpURL:String = assetloc + sectionInfo.content.url;
+				trace("tmpURL: " + tmpURL);
+				loadedAssets.push(tmpLoader);
+				loadedAssets[loadedAssets.length -1].y = topMargin;
+				var topPosition:uint = this.numChildren - 1;
+				setChildIndex( preloader, topPosition);
+				addChildAt( loadedAssets[loadedAssets.length -1], getChildIndex(preloader) );
+				preloader.queueItemToLoad(tmpURL, loadedAssets[loadedAssets.length -1], true);
+			}else{
+				// handle non-external content?!?
+			}
+			
 		};
 		
-		public function tweenStarted(event:TweenEvent):void{
-			if(verbose) trace("tweenStarted");
+		public function preloadedItemInit():void{
+			if (verbose) trace("preloadedItemInit");
 		};
 		
-		private function tweenFinished(event:TweenEvent):void{
-			if(verbose) trace("tweenFinished target: " + event.target);
-			removeChild(event.target.obj);
-		};
 	}
 }

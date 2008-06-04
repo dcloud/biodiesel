@@ -16,7 +16,7 @@ package classes.util{
 /*		// object of parsed siteInfo
 		private var parsedInfo:Object;
 */	
-		private var verbose:Boolean = true;
+		private var verbose:Boolean = false;
 	
 		public function SiteXML(pFile:String, pRef:Object=null, pCallback:String=null){
 			if(verbose) trace("Create SiteXML");

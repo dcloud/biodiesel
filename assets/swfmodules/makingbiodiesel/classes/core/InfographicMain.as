@@ -9,7 +9,6 @@ package classes.core{
 	import flash.display.MovieClip;
 	import flash.events.*;
 	import classes.events.InfogEvent;
-	import classes.ui.NavButton;
 	import classes.util.InfogXML;
 	
 	public class InfographicMain extends MovieClip{
@@ -20,6 +19,8 @@ package classes.core{
 				navarea_mc:NavPane;
 		*/
 		private var verbose:Boolean = true;
+		
+		private var assetsURL:String;
 		
 		private var seek_to_label:String;
 		
@@ -34,9 +35,9 @@ package classes.core{
 		public function InfographicMain(){
 			this.stop();
 			
-			xmlLoader = new InfogXML(xmlFile, this);
+/*			xmlLoader = new InfogXML(xmlFile, this);
 			xmlLoader.addEventListener(Event.COMPLETE, xmlLoaded);
-			addEventListener(Event.ADDED_TO_STAGE, stageAdded);
+*/			addEventListener(Event.ADDED_TO_STAGE, stageAdded);
 			addEventListener(InfogEvent.ANIMATION_COMPLETE, reachedLabel);
 			sectionsArr = new Array();
 			buttonArr = new Array();
