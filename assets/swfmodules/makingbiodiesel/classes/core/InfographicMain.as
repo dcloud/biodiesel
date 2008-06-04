@@ -35,9 +35,9 @@ package classes.core{
 		public function InfographicMain(){
 			this.stop();
 			
-/*			xmlLoader = new InfogXML(xmlFile, this);
+			xmlLoader = new InfogXML(xmlFile, this);
 			xmlLoader.addEventListener(Event.COMPLETE, xmlLoaded);
-*/			addEventListener(Event.ADDED_TO_STAGE, stageAdded);
+			addEventListener(Event.ADDED_TO_STAGE, stageAdded);
 			addEventListener(InfogEvent.ANIMATION_COMPLETE, reachedLabel);
 			sectionsArr = new Array();
 			buttonArr = new Array();

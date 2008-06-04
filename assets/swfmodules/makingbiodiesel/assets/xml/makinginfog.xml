@@ -4,7 +4,7 @@
 	<sections>
 		<section id="overview">
 			<title><![CDATA[Overview]]></title>
-			<text><![CDATA[Biodiesel fuel is made by chemically altering a vegetable oil or animal fat to reduce the viscosity, or the thickness, of the fluid to allow it to run in a regular diesel engine. This presentation explains the basic steps of producing biodiesel from start to finish, including the chemical reaction process called transesterification.]]></text>
+			<text><![CDATA[Biodiesel fuel is made by chemically altering a vegetable oil or animal fat to reduce the viscosity, or the thickness, of the fluid to allow it to run in a regular diesel engine. This presentation explains the basic steps of producing biodiesel from start to finish.]]></text>
 		</section>
 		<section id="preparation">
 			<title><![CDATA[Preparation of oil]]></title>
@@ -20,7 +20,7 @@
 		</section>		
 		<section id="titration">
 			<title><![CDATA[Test titration]]></title>
-			<text><![CDATA[Before starting the transesterification process on a large batch of waste oil, you will want to perform a titration. Titration is a test that indicates the amount of free fatty acids in waste oil. Free fatty acids will react during transesterification, reducing the amount of oil that gets made into biodiesel, so a titration will help determine how much extra catalyst is needed to ensure a more complete reaction.]]></text>
+			<text><![CDATA[Before starting the transesterification process on a large batch of oil, you will want to perform a titration. Titration is a test that indicates the amount of free fatty acids in waste oil. Free fatty acids will react with the methoxide during transesterification, reducing the amount of oil that gets made into biodiesel, so a titration will help determine how much extra catalyst is needed to ensure a more complete reaction.]]></text>
 		</section>		
 		<section id="makemethoxide">
 			<title><![CDATA[Make methoxide]]></title>
