@@ -28,27 +28,27 @@
 		</section>		
 		<section id="mixmethoxide">
 			<title><![CDATA[Mix methoxide into oil]]></title>
-			<text><![CDATA[After the oil has been heated and the methoxide mixed, it is time to introduce the methoxide into the oil. This is usually achieved by slowly spraying methoxide slowly into the reaction tank as the oil is being mixed constantly to help spread the reaction throughout the tank. Introducing the methoxide slowly helps the methoxide to react fully with the oil. During this phase, the transesterifcation process is taking place, and biodiesel and glycerol are being created. The reaction should be complete after one to two hours]]></text>
+			<text><![CDATA[After the oil has been heated and the methoxide mixed, it is time to introduce the methoxide into the oil. This is usually achieved by slowly spraying methoxide slowly into the reaction tank as the oil is being mixed constantly to help spread the reaction throughout the tank. Introducing the methoxide slowly helps the methoxide to react fully with the oil. During this phase, the transesterifcation process is taking place, and biodiesel and glycerol are being created. The reaction should be complete after one to two hours, leaving a mixture of biodiesel and glycerol in the reactor.]]></text>
 		</section>		
 		<section id="separation">
 			<title><![CDATA[Let biodiesel separate from glycerol]]></title>
-			<text><![CDATA[After the reaction is complete, the biodiesel and glyrcerol products are left in the reactor tank to separate and settle. Glycerol is heavier than biodiesel and will sink to the bottom of the tank while the biodiesel floats on top. The tank can be left alone for eight hours to allow for separation to fully take place.]]></text>
+			<text><![CDATA[After the reaction is complete, the biodiesel and glyrcerol are left in the reactor tank to separate and settle. Glycerol will sink to the bottom of the tank while the biodiesel floats on top. The tank should be left alone for eight or more hours to allow for separation of the biodiesel from the glycerol.]]></text>
 		</section>		
 		<section id="drainglycerol">
 			<title><![CDATA[Drain glycerol]]></title>
-			<text><![CDATA[To remove the glycerol from the biodiesel, a valve at the bottom of the reaction tank is opened and the glycerol is drained out. Glycerol is cloudy in appearance whereas biodiesel is translucent, so the draining liquid is monitored for the change from cloudy to translucent, indicating that all of the glycerol has been removed.]]></text>
+			<text><![CDATA[To remove the glycerol from the biodiesel, a valve at the bottom of the reaction tank is opened and the glycerol is drained out. Glycerol is cloudy in appearance whereas biodiesel is translucent, so the draining liquid is monitored for the change from cloudy to translucent, indicating that all of the glycerol has been removed. The glycerol can be disposed of, but can also be used to make soap.]]></text>
 		</section>		
 		<section id="washbiodiesel">
-			<title><![CDATA[Transfer biodiesel to tank for washing]]></title>
-			<text><![CDATA[Biodiesel is washed after the reaction to remove unreacted oil, free fatty acids, and the leftover methoxide. Water is sprayed on top of the biodiesel which then moves through the biodiesel, pushing out the impurities in the fuel. After washing the fuel and letting the water separate from the biodiesel, the wash water is then drained out. Fuel washing is often done more than once in order to further refine the quality of the fuel.]]></text>
+			<title><![CDATA[Wash biodiesel with water]]></title>
+			<text><![CDATA[Biodiesel is washed to remove unreacted oil, free fatty acids, and the leftover methoxide. There are a number of techniques for washing biodiesel, but the two most common are bubble washing and misting. In a misting wash, water is sprayed on top of the biodiesel and collects the impurities as it sinks through the biodiesel. Bubble washing involves adding water to the biodiesel and creating air bubbles that push the water up through the biodiesel, then letting it sink to catch more impurities. Washing is usually done multiple times, and can take up to 16 hours.]]></text>
 		</section>		
 		<section id="drybiodiesel">
 			<title><![CDATA[Remove wash water]]></title>
-			<text><![CDATA[Need text on drying.]]></text>
+			<text><![CDATA[After washing the fuel, the next step is to remove the water from the fuel. While water will naturally separate from biodiesel and most of the water can simply be drained out after separation, some water will still be suspended in the biodiesel. This water can be removed through evaporation encouraged by contact with air. Spraying the biodiesel itself will put more water in contact with air, encouraging evaporation.]]></text>
 		</section>		
 		<section id="results">
 			<title><![CDATA[The results]]></title>
-			<text><![CDATA[The biodiesel is now ready to be put into the tank of any car with a diesel engine. In colder weather, biodiesel is mixed with petroleum diesel to ensure the fuel does not gel in the cold. Commercial biodiesel is always mixed into petrodiesel, and is often sold in a mixture of 20% biodiesel to 80% petrodiesel, known as B20 biodiesel. Biodiesel homebrewers often run their diesel engines on pure biodiesel, or B100, especially in warmer climates.]]></text>
+			<text><![CDATA[The biodiesel is now finished and ready to be loaded in a vehicle with a diesel engine. Commercial biodiesel is always mixed into petrodiesel, and is often sold in a mixture of 20% biodiesel to 80% petrodiesel, known as B20 biodiesel. Biodiesel homebrewers often run their diesel engines on pure biodiesel, or B100, especially in warmer climates, though in cold winter weather, biodiesel should mixed with petroleum diesel to ensure the fuel does not thicken into a gel in the fuel lines.]]></text>
 		</section>		
 	</sections>
 </infographic>
