@@ -16,13 +16,17 @@ package classes.util{
 
 		private var verbose:Boolean = true;
 	
-		public function InfogXML(pFile:String, pRef:Object=null){
+		public function InfogXML(pFile:String, pRef:Object=null):void{
 			if(verbose) trace("Create infogXML");
+			loadXML(pFile, pRef);
+		}
+		
+		public function loadXML(pFile:String, pRef:Object=null):void{
 			var urlRequest:URLRequest = new URLRequest(pFile);
 			urlLoader = new URLLoader();
 			createLoaderHandlers(urlLoader);
 			urlLoader.load(urlRequest);
-		}
+		};
 		
 		private function createLoaderHandlers(pLoader:URLLoader):void{
 			pLoader.addEventListener(Event.COMPLETE, loadCompleteHandler);
@@ -35,7 +39,7 @@ package classes.util{
 			if(verbose) trace(e);
 			xmlObject = new XML(urlLoader.data);
 /*			if(verbose) trace(xmlObject.toXMLString());*/
-			dispatchEvent(new Event(Event.COMPLETE));
+			dispatchEvent(e);
 		};
 		
 		private function loadBegunHandler(e:Event):void{

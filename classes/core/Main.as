@@ -5,6 +5,7 @@
     import flash.net.URLRequest;
 	
 	import classes.util.Preloader;
+	import classes.util.PreloaderEvent;
 	import classes.util.SiteXML;
 	import classes.ui.NavButton;
 		
@@ -19,10 +20,13 @@
 		private var assetsURLs:Object;
 		private var loadedAssets:Array;
 		
-		private var bgLoader:Loader;
-		private var bgRequest:URLRequest;
 		private var preloader:Preloader;
+	
+		private var bgLoader:Loader;
 		private var bgURL:String = "assets/img/bg_texture.jpg";
+		
+		private var overlayLdr:Loader
+		private var overlayURL = "assets/img/overlay_texture.jpg"
 		
 		private var buttonArray:Array;
 		
@@ -30,7 +34,7 @@
 		
 		public function Main(){
 			preloader = new Preloader();
-			preloader.addEventListener(Event.INIT, preloadedItemInit);
+			preloader.addEventListener(PreloaderEvent.CONTENT_INIT, preloadedItemInit);
 			
 			addEventListener(MouseEvent.CLICK, handleMouseClick);
 			addEventListener(Event.ADDED, displayListAdd);
@@ -39,13 +43,17 @@
 			getSiteXML.addEventListener(Event.COMPLETE, siteXMLLoadedHandler);
 						
 			bgLoader = new Loader();
+			overlayLdr = new Loader();
 						
 			assetsURLs = new Object();
 			loadedAssets = new Array();
 			
 			addChildAt(bgLoader, 0);
+			overlayLdr.y= topMargin;
+			addChild(overlayLdr);
 			addChild(preloader);
 			preloader.queueItemToLoad(bgURL, bgLoader, true);
+			preloader.queueItemToLoad(overlayURL, overlayLdr, true);
 		};
 		
 		private function siteXMLLoadedHandler(e:Event):void{
@@ -95,7 +103,7 @@
 					buttonArray[j].x += buttonArray[j-1].x + buttonArray[j-1].width + 40;
 					
 				}
-				buttonArray[j].y = 30;
+				buttonArray[j].y = 40;
 				var preloaderIndex:int = getChildIndex(preloader);
 				addChildAt(buttonArray[j], preloaderIndex);
 				if (verbose) {
@@ -146,8 +154,42 @@
 			
 		};
 		
-		public function preloadedItemInit():void{
-			if (verbose) trace("preloadedItemInit");
+		// Need to work on contentLoaderInfo...
+		public function preloadedItemInit(e:PreloaderEvent):void{
+			if (verbose) {
+				trace("preloadedItemInit >> target: " + e.target);
+				trace("preloadedItemInit >> loaderInfo: " + e.loaderInfo);
+				trace("preloadedItemInit >> loaderInfo.contentType: " + e.loaderInfo.contentType);
+				trace("preloadedItemInit >> loaderInfo.content has absoluteURL: " +("absoluteURL" in e.loaderInfo.content));
+				trace("preloadedItemInit >> loaderInfo.url: " + e.loaderInfo.url);
+			}
+/*			var fileURL: String = e.loaderInfo.url;
+			var fileNamePattern:RegExp = /\w+\.swf/;
+			var fileNamePos:int = fileURL.search(fileNamePattern);
+			var filePath:String = fileURL.slice(0,fileNamePos);
+			if (verbose) {
+				trace("preloadedItemInit >> fileNamePos: " + fileNamePos);
+				trace("preloadedItemInit >> filePath: " + filePath);
+			}
+*/			// If we are loading an external swf, attempt to give it an absolute url 
+			// so it knows where to find its assets.
+			if (e.loaderInfo.contentType == "application/x-shockwave-flash" && "absoluteURL" in e.loaderInfo.content) {
+				var filePath:String = getSWFLocation(e.loaderInfo.url)
+				e.loaderInfo.content.absoluteURL = filePath;
+			}
+		};
+		
+		// using a contentLoader url, find the swf filename, split it off and get its absolute url
+		private function getSWFLocation(p_SwfURL:String):String{
+			var swfURL:String = p_SwfURL;
+			var swfNamePattern:RegExp = /\w+\.swf/;
+			var swfNamePos:int = swfURL.search(swfNamePattern);
+			var swfPath:String = swfURL.slice(0,swfNamePos);
+			if (verbose) {
+				trace("getSWFLocation >> swfNamePos: " + swfNamePos);
+				trace("getSWFLocation >> swfPath: " + swfPath);
+			}
+			return swfPath;
 		};
 		
 	}

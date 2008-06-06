@@ -20,6 +20,7 @@ package classes.core{
 		*/
 		private var verbose:Boolean = true;
 		
+		private var baseURL:String;
 		private var assetsURL:String;
 		
 		private var seek_to_label:String;
@@ -27,6 +28,7 @@ package classes.core{
 		private var xmlLoader:InfogXML;
 		private var xmlFile:String = "assets/xml/makinginfog.xml";
 		private var xmlInfo:XML;
+		private var gotXML:Boolean;
 		
 		private var sectionsArr:Array;
 		private var buttonArr:Array;
@@ -34,9 +36,10 @@ package classes.core{
 		
 		public function InfographicMain(){
 			this.stop();
-			
+			gotXML = false;
 			xmlLoader = new InfogXML(xmlFile, this);
 			xmlLoader.addEventListener(Event.COMPLETE, xmlLoaded);
+/*			xmlLoader.addEventListener(IOErrorEvent.IO_ERROR, xmlLoadErrorHandler);*/
 			addEventListener(Event.ADDED_TO_STAGE, stageAdded);
 			addEventListener(InfogEvent.ANIMATION_COMPLETE, reachedLabel);
 			sectionsArr = new Array();
@@ -47,13 +50,30 @@ package classes.core{
 			xmlInfo = e.target.xml;
 /*			if (verbose) trace("xmlInfo: " + xmlInfo);*/
 			if (verbose) trace("xmlLoaded...");
+			if (gotXML) {
+				sectionsArr = new Array();
+				buttonArr = new Array();
+			}
 			for each ( var sectionID in  xmlInfo.sections.section.@id){
 				sectionsArr.push(sectionID);
 				buttonArr.push(sectionID + "_btn"); // can do this since I'm already enforcing a naming convention for NavButton
 			};
+			gotXML = true;
 			currentSection = "overview";
 			// Once xml is loaded, go to the first label we want to see
 			playToLabel(currentSection); // *** shall change to 1.1 ***
+		};
+		
+		public function set absoluteURL(p_absoluteURL:String):void{
+			if (verbose) trace("set absoluteURL: " + p_absoluteURL);
+			baseURL = p_absoluteURL;
+			xmlFile = baseURL + xmlFile;
+			gotXML = false;
+			xmlLoader.loadXML(xmlFile);
+			if (verbose) {
+				trace("absoluteURL >> baseURL: " + baseURL);
+				trace("absoluteURL >> xmlFile " + xmlFile);
+			}
 		};
 		
 		private function stageAdded(e:Event):void{

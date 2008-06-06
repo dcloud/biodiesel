@@ -13,6 +13,8 @@ package classes.util{
 	import fl.transitions.easing.*;
 	import flash.events.*;
 	import flash.net.URLRequest;
+	
+	import classes.util.PreloaderEvent;
 
 	public class Preloader extends Sprite{
 		private var loaderArr:Array;
@@ -104,6 +106,7 @@ package classes.util{
 		private function initHandler(event:Event):void {
 			if(verbose) trace("initHandler: " + event);
 			if(verbose) trace("event.target: " + event.target);
+			dispatchEvent(new PreloaderEvent(PreloaderEvent.CONTENT_INIT, true, false, event.target));
 		}
 
 		private function ioErrorHandler(event:IOErrorEvent):void {
