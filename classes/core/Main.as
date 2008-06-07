@@ -191,7 +191,8 @@
 		private function contentRevealedHandler(e:PreloaderEvent):void{
 			if (bgLoader.loaderInfo.bytesLoaded == bgLoader.loaderInfo.bytesTotal) {
 				preloader.y = topMargin;
-				preloader.height = this.stage.stageHeight - topMargin;
+				var newHeight:Number = this.stage.stageHeight - topMargin;
+				preloader.resize(preloader.width, newHeight);
 			}
 		};
 		

@@ -32,7 +32,7 @@ package classes.util{
 		
 /*		private var loading_tf:TextField;*/
 		
-		private var contentHider:Sprite;
+/*		private var contentHider_sp:Sprite;*/
 		private var contentRevealTween:Tween;
 		
 		private var verbose:Boolean = true;
@@ -43,15 +43,17 @@ package classes.util{
 			var embeddedFonts:Array = Font.enumerateFonts(false);
 			embeddedFonts.sortOn("fontName", Array.CASEINSENSITIVE);
 			for ( var i=0; i<embeddedFonts.length; i++ ) {
-				if(verbose) trace("Preloader >> embeddedFonts[" + i + "]: " + embeddedFonts[i].fontName);
+				if(verbose) trace("Preloader >> embeddedFonts[" + i + "]: " + embeddedFonts[i].fontName + " type: " + embeddedFonts[i].fontType);
 			};
+/*			loading_tf = createTextLabel(0x333333, embeddedFonts[1].fontName);*/
+			loading_tf.autoSize = TextFieldAutoSize.LEFT;
 			
 			allBytesLoaded = 0;
 			allBytesTotal = 0;
 			
 			if (p_startVisible) {
-				contentHider = new Sprite();
-				contentHider.alpha = 1;
+/*				contentHider_sp = new Sprite();*/
+/*				contentHider_sp.alpha = 1;*/
 				hidden = true;
 			}
 			
@@ -62,16 +64,15 @@ package classes.util{
 		
 		private function stageAdd(e:Event):void{
 			if (verbose) trace("Preloader >> stageAdd >> e: " + e);
-			contentHider.graphics.beginFill(0xF1EFDE);
-			contentHider.graphics.drawRect(0,0, this.stage.stageWidth, this.stage.stageHeight);
-			addChild(contentHider);
-			
-/*			loading_tf = createTextLabel(0x333333);
+/*			contentHider_sp.graphics.beginFill(0xF1EFDE);
+			contentHider_sp.graphics.drawRect(0,0, this.stage.stageWidth, this.stage.stageHeight);
+			addChild(contentHider_sp);
+*/			
 			loading_tf.x = this.stage.stageWidth/2 - loading_tf.width/2;
 			loading_tf.y = this.stage.stageHeight/2 - loading_tf.height/2;
 			addChild(loading_tf);
-*/			
-			contentRevealTween = new Tween(contentHider, "alpha", Regular.easeOut, contentHider.alpha, contentHider.alpha, 1.6, true);
+			
+			contentRevealTween = new Tween(contentHider_sp, "alpha", Regular.easeOut, contentHider_sp.alpha, contentHider_sp.alpha, 1.6, true);
 			contentRevealTween.fforward();
 			contentRevealTween.addEventListener(TweenEvent.MOTION_START, tweenStarted);
 			contentRevealTween.addEventListener(TweenEvent.MOTION_RESUME, tweenStarted);
@@ -92,23 +93,10 @@ package classes.util{
 				hideContent();
 			}
 		};
-
-		// Apparently I can't work with embedded fonts in this class like I could in NavButton
-		private function createTextLabel(pColor:uint):TextField{
-			var txtLabel = new TextField();
-			txtLabel.autoSize = TextFieldAutoSize.CENTER;
-			txtLabel.background = false;
-			txtLabel.border = false;
-			txtLabel.antiAliasType = AntiAliasType.ADVANCED;
-/*			txtLabel.embedFonts = true;*/
-			
-			var format:TextFormat = new TextFormat();
-			format.font = "_sans";
-			format.size = 12;
-			format.color = pColor;
-			txtLabel.setTextFormat(format);
-			
-			return txtLabel;
+		// allow someone to resize the preloader area without scaling the textField inside
+		public function resize(p_width:Number, p_height:Number):void{
+			contentHider_sp.width = p_width;
+			contentHider_sp.height = p_height;
 		};
 		
 		private function configureListeners(dispatcher:IEventDispatcher):void {
@@ -178,12 +166,19 @@ package classes.util{
 			if (verbose) {
 				trace("allBytesLoaded=" + allBytesLoaded + "  allBytesTotal=" + allBytesTotal);
 			}
-/*			setLoadingText(allBytesLoaded, allBytesTotal,loaderArr.length);*/
+			setLoadingText(allBytesLoaded, allBytesTotal,loaderArr.length);
 		};
 
-/*		private function setLoadingText(p_bytesLoaded:Number, p_bytesTotal:Number, p_NumLoaders:Number):void{
+		private function setLoadingText(p_bytesLoaded:Number, p_bytesTotal:Number, p_NumLoaders:Number):void{
+			var loadingStatus:String = "";
+			for ( var m=0; m<loaderArr.length; m++ ) {
+				var assetLoadedBytes:Number = loaderArr[m]["loader"].contentLoaderInfo.bytesLoaded;
+				var assetLoadedTotal:Number = loaderArr[m]["loader"].contentLoaderInfo.bytesTotal;
+				var assetLoadedPct:Number = Math.floor(assetLoadedBytes/assetLoadedTotal *100);
+				loadingStatus += "Loading asset " + (m+1) + " of " + loaderArr.length + ": " + assetLoadedPct + "%\n";
+			};
 			var loadingString:String = "Loading " + p_NumLoaders + " assets: " + p_bytesLoaded + " of " + p_bytesTotal + " bytes";			
-			loading_tf.text = loadingString;
+			loading_tf.text = loadingStatus;
 			loading_tf.x = this.stage.stageWidth/2 - loading_tf.width/2;
 			loading_tf.y = this.stage.stageHeight/2 - loading_tf.height/2;
 			if(verbose) {
@@ -191,19 +186,19 @@ package classes.util{
 				traceTfInfo();
 			}
 		};
-*/		
+		
 		private function unLoadHandler(event:Event):void {
 			if(verbose) trace("unLoadHandler: " + event);
 		}
 		
 		private function hideContent():void{
-			contentRevealTween.begin = contentHider.alpha;
+			contentRevealTween.begin = contentHider_sp.alpha;
 			contentRevealTween.finish = 1;
 			contentRevealTween.start();
 		};
 		
 		private function revealContent():void{
-			contentRevealTween.begin = contentHider.alpha;
+			contentRevealTween.begin = contentHider_sp.alpha;
 			contentRevealTween.finish = 0;
 			contentRevealTween.start();
 		};
@@ -212,11 +207,11 @@ package classes.util{
 			if(verbose) {
 				trace("revealContent tween started");
 			}
-			if(contentHider.alpha == 0){
-				contentHider.visible = true;
-/*				loading_tf.visible = true;*/
+			if(contentHider_sp.alpha == 0){
+				contentHider_sp.visible = true;
+				loading_tf.visible = true;
 			}else{
-/*				loading_tf.visible = false;*/
+				loading_tf.visible = false;
 			}
 		};
 		
@@ -224,12 +219,13 @@ package classes.util{
 			if(verbose) {
 				trace("revealContent tween finished");
 			}
-			if(contentHider.alpha == 0){
-				contentHider.visible = false;
+			if(contentHider_sp.alpha == 0){
+				contentHider_sp.visible = false;
 				hidden = false;
+				loading_tf.text = "";
 				dispatchEvent(new PreloaderEvent(PreloaderEvent.CONTENT_REVEALED, true, false));
 			}else{
-				contentHider.visible = true;
+				contentHider_sp.visible = true;
 				hidden = true;
 			}
 		};
@@ -245,9 +241,9 @@ package classes.util{
 			return false;
 		};
 		
-/*		private function traceTfInfo():void{
+		private function traceTfInfo():void{
 			trace("loading_tf's index: " + getChildIndex(loading_tf));
-			trace("contentHider's index: " + getChildIndex(contentHider));
+			trace("contentHider_sp's index: " + getChildIndex(contentHider_sp));
 			trace("loading_tf.visible: " + loading_tf.visible);
 			trace("loading_tf.text: " + loading_tf.text);
 			trace("loading_tf.x: " + loading_tf.x);
@@ -258,7 +254,7 @@ package classes.util{
     		trace("loading_tf.textWidth: " + loading_tf.textWidth);
 			trace("loading_tf.textHeight: " + loading_tf.textHeight);
 		};
-*/	}	
+	}	
 }
 
 import flash.net.URLRequest;
