@@ -18,7 +18,7 @@
 		
 		private var siteURL:String;
 		private var assetsURLs:Object;
-		private var loadedAssets:Array;
+		private var loadedAssets:Object;
 		
 		private var preloader:Preloader;
 	
@@ -33,12 +33,14 @@
 		private var verbose:Boolean = true;
 		
 		public function Main(){
-			preloader = new Preloader();
-			preloader.addEventListener(PreloaderEvent.CONTENT_INIT, preloadedItemInit);
-			
+			if(verbose) trace("Hello World");
 			addEventListener(MouseEvent.CLICK, handleMouseClick);
 			addEventListener(Event.ADDED, displayListAdd);
-			if(verbose) trace("Hello World");
+
+			preloader = new Preloader();
+			preloader.addEventListener(PreloaderEvent.CONTENT_INIT, preloadedItemInit);
+			preloader.addEventListener(PreloaderEvent.CONTENT_REVEALED, contentRevealedHandler);
+			
 			getSiteXML = new SiteXML(sitexmlURL, this);
 			getSiteXML.addEventListener(Event.COMPLETE, siteXMLLoadedHandler);
 						
@@ -46,7 +48,7 @@
 			overlayLdr = new Loader();
 						
 			assetsURLs = new Object();
-			loadedAssets = new Array();
+			loadedAssets = new Object();
 			
 			addChildAt(bgLoader, 0);
 			overlayLdr.y= topMargin;
@@ -124,12 +126,20 @@
 					trace("e.target.id: " + e.target.id);
 					trace("Load: " + siteInfo.sections.section.(title == e.target.id).content.url);
 				}
-				loadSectionContent(e.target.id);
+				if (loadedAssets[e.target.id]) {
+					if (verbose) {
+						trace("loadedAssets[e.target.id] already exists.");
+					}
+					loadedAssets[e.target.id].visible = true;
+				}else{
+					loadSectionContent(e.target.id);
+				}
 			}else{
 				if(verbose) trace("e.target NOT NavButton");
 			}
 		};
 		
+		// This is run if content is not yet loaded
 		private function loadSectionContent(p_contentID):void{
 			var sectionInfo:XMLList = siteInfo.sections.section.(title == p_contentID);
 			if (verbose) {
@@ -141,16 +151,20 @@
 				var tmpLoader:Loader = new Loader();
 				var assetloc:String = assetsURLs[sectionInfo.content.@medium];
 				var tmpURL:String = assetloc + sectionInfo.content.url;
-				trace("tmpURL: " + tmpURL);
-				loadedAssets.push(tmpLoader);
-				loadedAssets[loadedAssets.length -1].y = topMargin;
+				loadedAssets[p_contentID] = tmpLoader;
+				loadedAssets[p_contentID].y = topMargin;
 				var topPosition:uint = this.numChildren - 1;
 				setChildIndex( preloader, topPosition);
-				addChildAt( loadedAssets[loadedAssets.length -1], getChildIndex(preloader) );
-				preloader.queueItemToLoad(tmpURL, loadedAssets[loadedAssets.length -1], true);
+				addChildAt( loadedAssets[p_contentID], getChildIndex(preloader) );
+				preloader.queueItemToLoad(tmpURL, loadedAssets[p_contentID], true);
 			}else{
 				// handle non-external content?!?
 			}
+			
+		};
+		
+		// This is run if content is already loaded.
+		private function showSectionContent(p_contentID:String):void{
 			
 		};
 		
@@ -159,23 +173,25 @@
 			if (verbose) {
 				trace("preloadedItemInit >> target: " + e.target);
 				trace("preloadedItemInit >> loaderInfo: " + e.loaderInfo);
+				trace("preloadedItemInit >> loaderInfo.loader: " + e.loaderInfo.loader);
 				trace("preloadedItemInit >> loaderInfo.contentType: " + e.loaderInfo.contentType);
 				trace("preloadedItemInit >> loaderInfo.content has absoluteURL: " +("absoluteURL" in e.loaderInfo.content));
 				trace("preloadedItemInit >> loaderInfo.url: " + e.loaderInfo.url);
 			}
-/*			var fileURL: String = e.loaderInfo.url;
-			var fileNamePattern:RegExp = /\w+\.swf/;
-			var fileNamePos:int = fileURL.search(fileNamePattern);
-			var filePath:String = fileURL.slice(0,fileNamePos);
-			if (verbose) {
-				trace("preloadedItemInit >> fileNamePos: " + fileNamePos);
-				trace("preloadedItemInit >> filePath: " + filePath);
-			}
-*/			// If we are loading an external swf, attempt to give it an absolute url 
+			// If we are loading an external swf, attempt to give it an absolute url 
 			// so it knows where to find its assets.
 			if (e.loaderInfo.contentType == "application/x-shockwave-flash" && "absoluteURL" in e.loaderInfo.content) {
 				var filePath:String = getSWFLocation(e.loaderInfo.url)
 				e.loaderInfo.content.absoluteURL = filePath;
+			}
+		};
+		
+		// If the background is loaded and revealed, 
+		// change the size of the preloader so it doesn't cover up the nav buttons
+		private function contentRevealedHandler(e:PreloaderEvent):void{
+			if (bgLoader.loaderInfo.bytesLoaded == bgLoader.loaderInfo.bytesTotal) {
+				preloader.y = topMargin;
+				preloader.height = this.stage.stageHeight - topMargin;
 			}
 		};
 		

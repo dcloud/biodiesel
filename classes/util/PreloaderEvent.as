@@ -9,6 +9,7 @@ package classes.util {
 
 	public class PreloaderEvent extends Event{
 		public static const CONTENT_INIT:String = "content_init";
+		public static const CONTENT_REVEALED:String = "content_revealed";
 		
 		public var loaderInfo:Object;
 		

@@ -8,6 +8,12 @@
 package classes.util{
 	import flash.display.Loader;
     import flash.display.Sprite;
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+    import flash.text.TextFormat;
+	import flash.text.AntiAliasType;
+	import flash.text.Font;
+
 	import fl.transitions.Tween;
 	import fl.transitions.TweenEvent;
 	import fl.transitions.easing.*;
@@ -21,6 +27,11 @@ package classes.util{
 		private var refObject:Object;
 		private var hidden:Boolean;
 
+		private var allBytesLoaded:Number;
+		private var allBytesTotal:Number;
+		
+/*		private var loading_tf:TextField;*/
+		
 		private var contentHider:Sprite;
 		private var contentRevealTween:Tween;
 		
@@ -29,6 +40,15 @@ package classes.util{
 		// can specify whether the Preloader is visible when created: default is true
 		public function Preloader(p_startVisible=true){
 			if(verbose) trace("Preloader created.");
+			var embeddedFonts:Array = Font.enumerateFonts(false);
+			embeddedFonts.sortOn("fontName", Array.CASEINSENSITIVE);
+			for ( var i=0; i<embeddedFonts.length; i++ ) {
+				if(verbose) trace("Preloader >> embeddedFonts[" + i + "]: " + embeddedFonts[i].fontName);
+			};
+			
+			allBytesLoaded = 0;
+			allBytesTotal = 0;
+			
 			if (p_startVisible) {
 				contentHider = new Sprite();
 				contentHider.alpha = 1;
@@ -46,6 +66,11 @@ package classes.util{
 			contentHider.graphics.drawRect(0,0, this.stage.stageWidth, this.stage.stageHeight);
 			addChild(contentHider);
 			
+/*			loading_tf = createTextLabel(0x333333);
+			loading_tf.x = this.stage.stageWidth/2 - loading_tf.width/2;
+			loading_tf.y = this.stage.stageHeight/2 - loading_tf.height/2;
+			addChild(loading_tf);
+*/			
 			contentRevealTween = new Tween(contentHider, "alpha", Regular.easeOut, contentHider.alpha, contentHider.alpha, 1.6, true);
 			contentRevealTween.fforward();
 			contentRevealTween.addEventListener(TweenEvent.MOTION_START, tweenStarted);
@@ -66,6 +91,24 @@ package classes.util{
 			if(!hidden && currentLoader["hideContent"]){
 				hideContent();
 			}
+		};
+
+		// Apparently I can't work with embedded fonts in this class like I could in NavButton
+		private function createTextLabel(pColor:uint):TextField{
+			var txtLabel = new TextField();
+			txtLabel.autoSize = TextFieldAutoSize.CENTER;
+			txtLabel.background = false;
+			txtLabel.border = false;
+			txtLabel.antiAliasType = AntiAliasType.ADVANCED;
+/*			txtLabel.embedFonts = true;*/
+			
+			var format:TextFormat = new TextFormat();
+			format.font = "_sans";
+			format.size = 12;
+			format.color = pColor;
+			txtLabel.setTextFormat(format);
+			
+			return txtLabel;
 		};
 		
 		private function configureListeners(dispatcher:IEventDispatcher):void {
@@ -118,11 +161,37 @@ package classes.util{
 		}
 
 		private function progressHandler(event:ProgressEvent):void {
+			setAllBytesNumbers();
 			if(verbose) {
-				trace("progressHandler: target=" + event.target + " bytesLoaded=" + event.bytesLoaded + " bytesTotal=" + event.bytesTotal);
+/*				trace("progressHandler: target=" + event.target + " bytesLoaded=" + event.bytesLoaded + " bytesTotal=" + event.bytesTotal);*/
 			}
 		}
+		
+		private function setAllBytesNumbers():void{
+			allBytesLoaded = 0;
+			allBytesTotal = 0;
+			
+			for ( var n=0; n<loaderArr.length; n++ ) {
+				allBytesLoaded += loaderArr[n]["loader"].contentLoaderInfo.bytesLoaded;
+				allBytesTotal += loaderArr[n]["loader"].contentLoaderInfo.bytesTotal;
+			};
+			if (verbose) {
+				trace("allBytesLoaded=" + allBytesLoaded + "  allBytesTotal=" + allBytesTotal);
+			}
+/*			setLoadingText(allBytesLoaded, allBytesTotal,loaderArr.length);*/
+		};
 
+/*		private function setLoadingText(p_bytesLoaded:Number, p_bytesTotal:Number, p_NumLoaders:Number):void{
+			var loadingString:String = "Loading " + p_NumLoaders + " assets: " + p_bytesLoaded + " of " + p_bytesTotal + " bytes";			
+			loading_tf.text = loadingString;
+			loading_tf.x = this.stage.stageWidth/2 - loading_tf.width/2;
+			loading_tf.y = this.stage.stageHeight/2 - loading_tf.height/2;
+			if(verbose) {
+				trace(loadingString);
+				traceTfInfo();
+			}
+		};
+*/		
 		private function unLoadHandler(event:Event):void {
 			if(verbose) trace("unLoadHandler: " + event);
 		}
@@ -140,17 +209,25 @@ package classes.util{
 		};
 		
 		private function tweenStarted(event:TweenEvent):void{
-			if(verbose) trace("revealContent tween started");
+			if(verbose) {
+				trace("revealContent tween started");
+			}
 			if(contentHider.alpha == 0){
 				contentHider.visible = true;
+/*				loading_tf.visible = true;*/
+			}else{
+/*				loading_tf.visible = false;*/
 			}
 		};
 		
 		private function tweenFinished(event:TweenEvent):void{
-			if(verbose) trace("revealContent tween finished");
+			if(verbose) {
+				trace("revealContent tween finished");
+			}
 			if(contentHider.alpha == 0){
 				contentHider.visible = false;
 				hidden = false;
+				dispatchEvent(new PreloaderEvent(PreloaderEvent.CONTENT_REVEALED, true, false));
 			}else{
 				contentHider.visible = true;
 				hidden = true;
@@ -167,7 +244,21 @@ package classes.util{
 			};
 			return false;
 		};
-	}	
+		
+/*		private function traceTfInfo():void{
+			trace("loading_tf's index: " + getChildIndex(loading_tf));
+			trace("contentHider's index: " + getChildIndex(contentHider));
+			trace("loading_tf.visible: " + loading_tf.visible);
+			trace("loading_tf.text: " + loading_tf.text);
+			trace("loading_tf.x: " + loading_tf.x);
+			trace("loading_tf.y: " + loading_tf.y);
+    		trace("loading_tf.autoSize: " + loading_tf.autoSize);
+			trace("loading_tf.width: " + loading_tf.width);
+    		trace("loading_tf.height: " + loading_tf.height);
+    		trace("loading_tf.textWidth: " + loading_tf.textWidth);
+			trace("loading_tf.textHeight: " + loading_tf.textHeight);
+		};
+*/	}	
 }
 
 import flash.net.URLRequest;

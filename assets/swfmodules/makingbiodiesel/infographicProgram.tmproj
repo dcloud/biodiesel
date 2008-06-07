@@ -10,7 +10,7 @@
 			<key>filename</key>
 			<string>classes/util/InfogXML.as</string>
 			<key>lastUsed</key>
-			<date>2008-06-03T21:22:21Z</date>
+			<date>2008-06-06T21:27:58Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -22,7 +22,7 @@
 			<key>filename</key>
 			<string>classes/core/InfographicMain.as</string>
 			<key>lastUsed</key>
-			<date>2008-06-04T18:27:09Z</date>
+			<date>2008-06-07T02:08:53Z</date>
 			<key>selected</key>
 			<true/>
 		</dict>
@@ -30,13 +30,13 @@
 			<key>filename</key>
 			<string>classes/events/InfogEvent.as</string>
 			<key>lastUsed</key>
-			<date>2008-06-03T19:35:28Z</date>
+			<date>2008-06-06T22:40:11Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>classes/ui/InfogButton.as</string>
 			<key>lastUsed</key>
-			<date>2008-06-03T23:33:18Z</date>
+			<date>2008-06-06T20:55:28Z</date>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
@@ -48,14 +48,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>43</integer>
+				<integer>12</integer>
 				<key>line</key>
-				<integer>45</integer>
+				<integer>71</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>22</integer>
+			<integer>36</integer>
 		</dict>
 		<key>classes/events/InfogEvent.as</key>
 		<dict>
@@ -75,16 +75,16 @@
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>22</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>14</integer>
+				<integer>0</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>37</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>14</integer>
+				<integer>37</integer>
 			</dict>
 		</dict>
 		<key>classes/ui/InfogButton.as</key>
@@ -120,14 +120,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>5</integer>
+				<integer>3</integer>
 				<key>line</key>
-				<integer>36</integer>
+				<integer>41</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>12</integer>
+			<integer>14</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
@@ -140,6 +140,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{176, 80}, {978, 948}}</string>
+	<string>{{97, 0}, {978, 832}}</string>
 </dict>
 </plist>
