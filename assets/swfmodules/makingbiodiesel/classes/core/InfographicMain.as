@@ -7,7 +7,9 @@
 package classes.core{
 	import flash.text.TextField;
 	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	import flash.events.*;
+
 	import classes.events.InfogEvent;
 	import classes.util.InfogXML;
 	
@@ -16,7 +18,6 @@ package classes.core{
 			//// Author time elements ////
 				(everything visual, essentially)
 				textpane_sprite:TextPane;
-				navarea_mc:NavPane;
 		*/
 		private var verbose:Boolean = true;
 		
@@ -44,6 +45,7 @@ package classes.core{
 			addEventListener(InfogEvent.ANIMATION_COMPLETE, reachedLabel);
 			sectionsArr = new Array();
 			buttonArr = new Array();
+			
 		}
 		
 		private function xmlLoaded(e:Event):void{

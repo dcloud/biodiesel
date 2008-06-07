@@ -1,4 +1,5 @@
 ﻿package classes.core{
+	import flash.display.DisplayObject;
 	import flash.display.Loader;
     import flash.display.Sprite;
     import flash.events.*;
@@ -8,6 +9,7 @@
 	import classes.util.PreloaderEvent;
 	import classes.util.SiteXML;
 	import classes.ui.NavButton;
+	import classes.ui.IntroPane;
 		
 	public class Main extends Sprite{
 		private const topMargin:Number = 85; // a design decision has everything at y= topMargin or lower
@@ -21,6 +23,7 @@
 		private var loadedAssets:Object;
 		
 		private var preloader:Preloader;
+		private var introPane:IntroPane;
 	
 		private var bgLoader:Loader;
 		private var bgURL:String = "assets/img/bg_texture.jpg";
@@ -49,7 +52,7 @@
 						
 			assetsURLs = new Object();
 			loadedAssets = new Object();
-			
+						
 			addChildAt(bgLoader, 0);
 			overlayLdr.y= topMargin;
 			addChild(overlayLdr);
@@ -64,6 +67,8 @@
 			siteInfo = new XML();
 			siteInfo = e.target.xml;
 			if (siteInfo) {
+				createIntro();
+				showSectionContent("Introduction");
 				createNavButtons();
 				getURLInfo();
 			}else{
@@ -90,6 +95,18 @@
 			}
 		};
 		
+		//This will place an object at the top the the display index, though
+		// still under the preloader, which should always be on top
+		private function putAtTopOfDisplayIndex(p_Object:DisplayObject):void{
+			addChild(preloader); // ensure preloader is at top of display list.
+			var preloaderIndex:int = getChildIndex(preloader);
+			addChildAt(p_Object, preloaderIndex);
+			if (verbose) {
+				trace("preloaderIndex before addChild: " + preloaderIndex);
+				trace("preloader index after addChild: " + getChildIndex(preloader));
+			}
+		};
+		
 		// Create buttons (after XML has been loaded)
 		private function createNavButtons():void{
 			buttonArray = new Array();
@@ -106,16 +123,32 @@
 					
 				}
 				buttonArray[j].y = 40;
-				var preloaderIndex:int = getChildIndex(preloader);
+				putAtTopOfDisplayIndex(buttonArray[j]);
+/*				var preloaderIndex:int = getChildIndex(preloader);
 				addChildAt(buttonArray[j], preloaderIndex);
-				if (verbose) {
-					trace("preloaderIndex before addChild: " + preloaderIndex);
-					trace("preloader index after addChild: " + getChildIndex(preloader));
+*/				if (verbose) {
 					trace("buttonArray[j] index: " + getChildIndex(buttonArray[j]));
 					trace("numChildren: " + this.numChildren);
 				}
 				j++;
 			};
+		};
+		
+		// This can be done any time after xml has loaded
+		private function createIntro():void{
+			if (siteInfo) {
+				var introText = siteInfo.sections.section.(title=="Introduction").content.data;
+				introPane = new IntroPane(introText);
+				introPane.y = 85;
+				putAtTopOfDisplayIndex(introPane);
+/*				var preloaderIndex:int = getChildIndex(preloader);
+				addChildAt(introPane, preloaderIndex);
+*/				
+				loadedAssets["Introduction"] = introPane;
+				introPane.visible = false;
+			}else{
+				if (verbose) trace("Can't create intropane: don't have siteInfo");
+			}
 		};
 		
 		private function handleMouseClick(e:MouseEvent):void{
@@ -130,10 +163,11 @@
 					if (verbose) {
 						trace("loadedAssets[e.target.id] already exists.");
 					}
-					loadedAssets[e.target.id].visible = true;
+					showSectionContent(e.target.id);
 				}else{
 					loadSectionContent(e.target.id);
 				}
+				markCurrentSection(e.target.id);
 			}else{
 				if(verbose) trace("e.target NOT NavButton");
 			}
@@ -153,19 +187,48 @@
 				var tmpURL:String = assetloc + sectionInfo.content.url;
 				loadedAssets[p_contentID] = tmpLoader;
 				loadedAssets[p_contentID].y = topMargin;
-				var topPosition:uint = this.numChildren - 1;
-				setChildIndex( preloader, topPosition);
-				addChildAt( loadedAssets[p_contentID], getChildIndex(preloader) );
+/*				putAtTopOfDisplayIndex(loadedAssets[p_contentID]);*/
 				preloader.queueItemToLoad(tmpURL, loadedAssets[p_contentID], true);
+				setSectionsVisibility(p_contentID);
 			}else{
 				// handle non-external content?!?
+				if (verbose) trace("Content is internal");
 			}
 			
 		};
 		
 		// This is run if content is already loaded.
 		private function showSectionContent(p_contentID:String):void{
-			
+			setSectionsVisibility(p_contentID);
+		};
+		
+		// Sets the visibilty of items in loadedAssets object based on the id of the content chosen for display
+		private function setSectionsVisibility(p_chosenContentID:String):void{
+			for ( var section:String in loadedAssets ){
+				if (section == p_chosenContentID) {
+					if (verbose) {
+						trace("loadedAssets[" + section +  "] is chosen")
+					}
+					putAtTopOfDisplayIndex(loadedAssets[section])
+					loadedAssets[section].visible = true;
+					
+				}else{
+					if (verbose) {
+						trace("loadedAssets[" + section +  "] is NOT chosen")
+					}
+					loadedAssets[section].visible = false;
+				}
+			};
+		};
+		
+		private function markCurrentSection(p_ClickedID:String):void{
+			for ( var b=0; b<buttonArray.length; b++ ) {
+				if (buttonArray[b].id == p_ClickedID) {
+					buttonArray[b].setSelected(true);
+				}else{
+					buttonArray[b].setSelected(false);
+				}
+			};
 		};
 		
 		// Need to work on contentLoaderInfo...

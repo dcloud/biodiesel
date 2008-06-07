@@ -9,12 +9,19 @@
 	import flash.text.Font;
 	import flash.filters.DropShadowFilter;
 	import flash.filters.BitmapFilterQuality;
+	import flash.geom.ColorTransform;
 	
 	public class NavButton extends SimpleButton{
 		private var labelText:String;
 		private var contentID:String = "";
+		private var defaultUpFilters:Array;
+		private var defaultOverFilters:Array;
+		private var defaultDownFilters:Array;
+		private var selectedFilters:Array;
+		private var	origX:Number;
+		private var origY:Number;
 		
-		private var verbose:Boolean = false;
+		private var verbose:Boolean = true;
 		
 		public function NavButton(pName:String){
 			contentID = pName;
@@ -24,6 +31,9 @@
 			downState = createDownState();
 			hitTestState = upState;
 			setHandlers();
+			
+			selectedFilters = [createDropShadow(0x333333, 3, 2, 45, 0.8)];
+			
 			var embeddedFonts:Array = Font.enumerateFonts(false);
 			embeddedFonts.sortOn("fontName", Array.CASEINSENSITIVE);
 			for ( var i=0; i<embeddedFonts.length; i++ ) {
@@ -54,8 +64,8 @@
 		private function createUpState():Sprite{
 			var sprite:Sprite = new Sprite();
 			var txtField:TextField = createTextLabel(0xFFFFFF);
-			var filtersArr:Array = [createDropShadow(0x000000, 1, 1, 45, 0.8)];
-			sprite.filters = filtersArr;
+			defaultUpFilters = [createDropShadow(0x000000, 1, 1, 45, 0.8)];
+			sprite.filters = defaultUpFilters;
 
 			sprite.addChild(txtField);
 			return sprite;
@@ -64,8 +74,8 @@
 		private function createOverState():Sprite{
 			var sprite:Sprite = new Sprite();
 			var txtField:TextField = createTextLabel(0xF1EFDE);
-			var filtersArr:Array = [createDropShadow(0x000000, 1, 1, 45, 1)];
-			sprite.filters = filtersArr;
+			defaultOverFilters = [createDropShadow(0x000000, 1, 1, 45, 1)];
+			sprite.filters = defaultOverFilters;
 
 			sprite.addChild(txtField);
 			return sprite;
@@ -74,8 +84,8 @@
 		private function createDownState():Sprite{
 			var sprite:Sprite = new Sprite();
 			var txtField:TextField = createTextLabel(0xF1EFDE);
-			var filtersArr:Array = [createDropShadow(0x000000, 1, 1, 45, .4)];
-			sprite.filters = filtersArr;
+			defaultDownFilters = [createDropShadow(0x000000, 1, 1, 45, .4)];
+			sprite.filters = defaultDownFilters;
 			
 			sprite.addChild(txtField);
 			txtField.x += 1;
@@ -93,6 +103,24 @@
 			dropShadow.strength = pStrength;
 			dropShadow.quality = BitmapFilterQuality.HIGH;
 			return dropShadow;
+		};
+		
+		public function setSelected(isSelected:Boolean):void{
+			if (isSelected) {
+				if (verbose) {
+					trace("NavButton '" + this.id + "' is selected.");
+				}
+				this.upState.filters = selectedFilters;
+				this.overState.filters = selectedFilters;
+				this.downState.filters = selectedFilters;
+			}else{
+				if (verbose) {
+					trace("NavButton '" + this.id + "' is NOT selected.");
+				}
+				this.upState.filters = defaultUpFilters;
+				this.overState.filters = defaultOverFilters;
+				this.downState.filters = defaultDownFilters;
+			}
 		};
 		
 		private function setHandlers():void{

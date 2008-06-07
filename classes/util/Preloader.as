@@ -149,12 +149,13 @@ package classes.util{
 		}
 
 		private function progressHandler(event:ProgressEvent):void {
-			setAllBytesNumbers();
+			setLoadingText();
 			if(verbose) {
 /*				trace("progressHandler: target=" + event.target + " bytesLoaded=" + event.bytesLoaded + " bytesTotal=" + event.bytesTotal);*/
 			}
 		}
 		
+		// not used currently...
 		private function setAllBytesNumbers():void{
 			allBytesLoaded = 0;
 			allBytesTotal = 0;
@@ -166,10 +167,9 @@ package classes.util{
 			if (verbose) {
 				trace("allBytesLoaded=" + allBytesLoaded + "  allBytesTotal=" + allBytesTotal);
 			}
-			setLoadingText(allBytesLoaded, allBytesTotal,loaderArr.length);
 		};
 
-		private function setLoadingText(p_bytesLoaded:Number, p_bytesTotal:Number, p_NumLoaders:Number):void{
+		private function setLoadingText():void{
 			var loadingStatus:String = "";
 			for ( var m=0; m<loaderArr.length; m++ ) {
 				var assetLoadedBytes:Number = loaderArr[m]["loader"].contentLoaderInfo.bytesLoaded;
@@ -177,12 +177,10 @@ package classes.util{
 				var assetLoadedPct:Number = Math.floor(assetLoadedBytes/assetLoadedTotal *100);
 				loadingStatus += "Loading asset " + (m+1) + " of " + loaderArr.length + ": " + assetLoadedPct + "%\n";
 			};
-			var loadingString:String = "Loading " + p_NumLoaders + " assets: " + p_bytesLoaded + " of " + p_bytesTotal + " bytes";			
 			loading_tf.text = loadingStatus;
-			loading_tf.x = this.stage.stageWidth/2 - loading_tf.width/2;
-			loading_tf.y = this.stage.stageHeight/2 - loading_tf.height/2;
+			loading_tf.x = this.width/2 - loading_tf.width/2;
+			loading_tf.y = (this.height/5)*2;
 			if(verbose) {
-				trace(loadingString);
 				traceTfInfo();
 			}
 		};
