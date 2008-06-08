@@ -61,9 +61,20 @@ package classes.core{
 				buttonArr.push(sectionID + "_btn"); // can do this since I'm already enforcing a naming convention for NavButton
 			};
 			gotXML = true;
-			currentSection = "overview";
 			// Once xml is loaded, go to the first label we want to see
-			playToLabel(currentSection); // *** shall change to 1.1 ***
+			currentSection = "overview";
+			playToLabel(currentSection);
+		};
+		
+		public function set reset(p_reset:Boolean):void{
+			if (p_reset) {
+				currentSection = "overview";
+				goToLabel(currentSection);
+			}
+		};
+		
+		public function get reset():Boolean{
+			return true;
 		};
 		
 		public function set absoluteURL(p_absoluteURL:String):void{

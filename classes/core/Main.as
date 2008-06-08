@@ -167,6 +167,7 @@
 				}else{
 					loadSectionContent(e.target.id);
 				}
+				resetNonCurrentSections(e.target.id);
 				markCurrentSection(e.target.id);
 			}else{
 				if(verbose) trace("e.target NOT NavButton");
@@ -227,6 +228,21 @@
 					buttonArray[b].setSelected(true);
 				}else{
 					buttonArray[b].setSelected(false);
+				}
+			};
+		};
+		
+		// if the section isn't the currently chosen section, it may need resetting
+		private function resetNonCurrentSections(p_ChosenContentID:String):void{
+			for ( var item in loadedAssets ){
+				if (item != p_ChosenContentID) {
+					if (verbose) trace("resetNonCurrentSections >> reset " + loadedAssets[item]);
+					if ( (loadedAssets[item] is Loader) && ("reset" in loadedAssets[item].content) ) {
+						
+						loadedAssets[item].content.reset = true;
+					}else if("reset" in loadedAssets[item]){
+						loadedAssets[item].reset = true;
+					}
 				}
 			};
 		};
