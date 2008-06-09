@@ -1,0 +1,171 @@
+<infotable>
+	<title>Alternative Fuels Comparison</title>
+	<notes>
+		<note><![CDATA[Data Source: U.S. Department of Energy Alternative Fuels & Advanced Vehicles Data Center. Average fuel prices for January 2008, the most recent dataset that includes alternative fuel prices.]]></note>
+	</notes>
+	<note><![CDATA[Mixtures of ethanol or biodiesel with gasoline are referred to by their alternative fuel concentration. For example, a mixture of 85% ethanol and 15% gasoline is called E85. Pure ethanol is called E100, whereas pure biodiesel is B100.]]></note>
+	<sections>
+		<section>
+			<title><![CDATA[Gasoline]]></title>
+			<item>
+				<label><![CDATA[Fuel Source]]></label>
+				<data><![CDATA[Crude Oil]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Percent of Gasoline's Energy (per gallon)]]></label>
+				<data><![CDATA[100%]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Vehicle Compatibility]]></label>
+				<data><![CDATA[Compatible with vehicles that have standard combustion engines]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Environmental Impacts]]></label>
+				<data><![CDATA[Emissions contribute to air pollution. Not biodegradable.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Safety Issues]]></label>
+				<data><![CDATA[Highly flammable]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Average Fuel Price]]></label>
+				<data><![CDATA[$2.99]]></data>
+			</item>
+		</section>
+		<section>
+			<title><![CDATA[No. 2 Diesel]]></title>
+			<item>
+				<label><![CDATA[Fuel Source]]></label>
+				<data><![CDATA[Crude Oil]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Percent of Gasoline's Energy (per gallon)]]></label>
+				<data><![CDATA[110%]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Vehicle Compatibility]]></label>
+				<data><![CDATA[Compatible with vehicles that have diesel engines]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Environmental Impacts]]></label>
+				<data><![CDATA[Emissions contribute to air pollution. Not biodegradable.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Safety Issues]]></label>
+				<data><![CDATA[Highly flammable.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Average Fuel Price]]></label>
+				<data><![CDATA[$3.05]]></data>
+			</item>
+		</section>
+		<section>
+			<title><![CDATA[Biodiesel]]></title>
+			<item>
+				<label><![CDATA[Fuel Source]]></label>
+				<data><![CDATA[Animal fats or vegetable oils, including waste vegetable oils.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Percent of Gasoline's Energy (per gallon)]]></label>
+				<data><![CDATA[103%]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Vehicle Compatibility]]></label>
+				<data><![CDATA[Compatible with vehicles that have diesel engines]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Environmental Impacts]]></label>
+				<data><![CDATA[Reduces hydrocarbons, global warming gases. Uncertain nitrogen oxide emissions.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Safety Issues]]></label>
+				<data><![CDATA[Non-toxic and biodegradable. Not as flammable as diesel fuel.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Average Fuel Price]]></label>
+				<data><![CDATA[$3.63]]></data>
+			</item>
+		</section>
+		<section>
+			<title><![CDATA[Electricity]]></title>
+			<item>
+				<label><![CDATA[Fuel Source]]></label>
+				<data><![CDATA[Dependent on power plant fuel source (coal, nuclear, hydroelectric, etc.)]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Percent of Gasoline's Energy (per gallon)]]></label>
+				<data><![CDATA[1KWh has 3%]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Vehicle Compatibility]]></label>
+				<data><![CDATA[Requires a vehicle made to run on electricity.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Environmental Impacts]]></label>
+				<data><![CDATA[Electric vehicles have zero pollution, but the power plant that generates the electricity may not.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Safety Issues]]></label>
+				<data><![CDATA[None significant.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Average Fuel Price]]></label>
+				<data><![CDATA[Determined by power utility's prices.]]></data>
+			</item>
+		</section>
+		<section>
+			<title><![CDATA[Ethanol]]></title>
+			<item>
+				<label><![CDATA[Fuel Source]]></label>
+				<data><![CDATA[Corn, grains, or agricultural waste.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Percent of Gasoline's Energy (per gallon)]]></label>
+				<data><![CDATA[66%]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Vehicle Compatibility]]></label>
+				<data><![CDATA[Up to 10% mixture with regular gasoline (known as E10) can be used in today's vehicles. Higher concentrations require flex fuel vehicles.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Environmental Impacts]]></label>
+				<data><![CDATA[Vehicles running 85% ethanol/15% gasoline mixture (E85) reduce global warming gases and nitrogen oxide, but have increase emissions of formaldehyde and acetaldehyde.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Safety Issues]]></label>
+				<data><![CDATA[Less toxic than gasoline; vapors disperse more quickly than gasoline.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Average Fuel Price]]></label>
+				<data><![CDATA[$2.51 (E85)]]></data>
+			</item>
+		</section>
+		<section>
+			<title><![CDATA[Hydrogen]]></title>
+			<item>
+				<label><![CDATA[Fuel Source]]></label>
+				<data><![CDATA[Natural gas, methanol, or electrolysis of water.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Percent of Gasoline's Energy (per gallon)]]></label>
+				<data><![CDATA[44.4% for 1lb of H2]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Vehicle Compatibility]]></label>
+				<data><![CDATA[Currently there are no commercially available hydrogen vehicles/]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Environmental Impacts]]></label>
+				<data><![CDATA[Zero tailpipe emissions for fuel cells. Pollutants are emitted from hydrogen production.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Safety Issues]]></label>
+				<data><![CDATA[Standards have been set for fuel cell vehicles, but with vehicles, there is not data. Safety record in industrial use is excellent.]]></data>
+			</item>
+			<item>
+				<label><![CDATA[Average Fuel Price]]></label>
+				<data><![CDATA[Not available.]]></data>
+			</item>
+		</section>
+	</sections>
+</infotable>
