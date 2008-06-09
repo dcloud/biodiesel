@@ -35,7 +35,7 @@ package classes.util{
 /*		private var contentHider_sp:Sprite;*/
 		private var contentRevealTween:Tween;
 		
-		private var verbose:Boolean = true;
+		private var verbose:Boolean = false;
 		
 		// can specify whether the Preloader is visible when created: default is true
 		public function Preloader(p_startVisible=true){

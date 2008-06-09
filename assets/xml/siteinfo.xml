@@ -4,28 +4,33 @@
 		<assets url="assets/">
 			<asset medium="swf" url="swfmodules/" />
 			<asset medium="image" url="img/" />
+			<asset medium="movplayer" url="movplayer/" />
+			<asset medium="video" url="video/" />
 		</assets>
 	</info>
 	<sections>
 		<section>
 			<title><![CDATA[Introduction]]></title>
-			<class><![CDATA[IntroPane]]></class>
+			<type><![CDATA[IntroPane]]></type>
 			<content loc="internal" medium="text">
-				<data><![CDATA[Biodiesel is a fuel made from vegetable oil or animal fat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.]]></data>
+				<data><![CDATA[As gasoline prices in the United States reach record highs, alternative fuels such as ethanol, electricity, hydrogen and biodiesel are being looked at as possible replacements for petroleum-based fuels. Biodiesel is unique amongst the alternative fuels because it can be made from used vegetable oils or animal fats, it will run in unmodified diesel vehicles, and can be produced by anyone willing to learn how. This site explores how biodiesel is made, its appeal to people who view it as a sustainable alternative to gasoline, and how biodiesel compares with other alternative fuels.]]></data>
 			</content>
 		</section>
 		<section>
 			<title><![CDATA[Making Biodiesel]]></title>
-			<class><![CDATA[InfographicPane]]></class>
+			<type><![CDATA[InfographicPane]]></type>
 			<content loc="external" medium="swf">
 				<url><![CDATA[makingbiodiesel/biodieselInfoGraphic.swf]]></url>
 			</content>
 		</section>
 		<section>
 			<title><![CDATA[Sustainable Biodiesel]]></title>
-			<class><![CDATA[VideoPane]]></class>
-			<content loc="external" medium="swf">
+			<type><![CDATA[VideoPane]]></type>
+			<content loc="external" medium="movplayer">
 				<url><![CDATA[movplayer.swf]]></url>
+			</content>
+			<content loc="external" medium="video">
+				<url><![CDATA[biodieselvideo.m4v]]></url>
 			</content>
 			<content loc="internal" medium="text">
 				<data><![CDATA[Piedmont Biofuels. Tuesday night fuel-making nights. Waste Vegetable oil.]]></data>
@@ -33,7 +38,7 @@
 		</section>
 		<section>
 			<title><![CDATA[Comparing Alternatives]]></title>
-			<class><![CDATA[AlternativePane]]></class>
+			<type><![CDATA[InfographicPane]]></type>
 		<content loc="external" medium="swf">
 				<url><![CDATA[alternatives.swf]]></url>
 			</content>

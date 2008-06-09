@@ -9,7 +9,8 @@
 	import classes.util.PreloaderEvent;
 	import classes.util.SiteXML;
 	import classes.ui.NavButton;
-	import classes.ui.IntroPane;
+	import classes.view.IntroPane;
+	import classes.view.VideoPane;
 		
 	public class Main extends Sprite{
 		private const topMargin:Number = 85; // a design decision has everything at y= topMargin or lower
@@ -24,6 +25,7 @@
 		
 		private var preloader:Preloader;
 		private var introPane:IntroPane;
+		private var videoPane:VideoPane;
 	
 		private var bgLoader:Loader;
 		private var bgURL:String = "assets/img/bg_texture.jpg";
@@ -33,7 +35,7 @@
 		
 		private var buttonArray:Array;
 		
-		private var verbose:Boolean = true;
+		private var verbose:Boolean = false;
 		
 		public function Main(){
 			if(verbose) trace("Hello World");
@@ -67,7 +69,7 @@
 			siteInfo = new XML();
 			siteInfo = e.target.xml;
 			if (siteInfo) {
-				createIntro();
+				loadIntroPane(siteInfo.sections.section.(title=="Introduction"));
 				showSectionContent("Introduction");
 				createNavButtons();
 				getURLInfo();
@@ -134,30 +136,13 @@
 			};
 		};
 		
-		// This can be done any time after xml has loaded
-		private function createIntro():void{
-			if (siteInfo) {
-				var introText = siteInfo.sections.section.(title=="Introduction").content.data;
-				introPane = new IntroPane(introText);
-				introPane.y = 85;
-				putAtTopOfDisplayIndex(introPane);
-/*				var preloaderIndex:int = getChildIndex(preloader);
-				addChildAt(introPane, preloaderIndex);
-*/				
-				loadedAssets["Introduction"] = introPane;
-				introPane.visible = false;
-			}else{
-				if (verbose) trace("Can't create intropane: don't have siteInfo");
-			}
-		};
-		
+		// Currently does something only if a NavButton is an event target
 		private function handleMouseClick(e:MouseEvent):void{
 			if(verbose) trace("handleMouseClick e: " + e);
 			if (e.target is NavButton) {
 				if(verbose) {
 					trace("e.target is NavButton");
 					trace("e.target.id: " + e.target.id);
-					trace("Load: " + siteInfo.sections.section.(title == e.target.id).content.url);
 				}
 				if (loadedAssets[e.target.id]) {
 					if (verbose) {
@@ -178,29 +163,82 @@
 		private function loadSectionContent(p_contentID):void{
 			var sectionInfo:XMLList = siteInfo.sections.section.(title == p_contentID);
 			if (verbose) {
+				trace("sectionInfo.type: " + sectionInfo.type);
 				trace("sectionInfo.content.url: " + sectionInfo.content.url);
-				trace("sectionInfo.content.length: " + sectionInfo.content.length);
 			}
-			if (sectionInfo.content.@loc.toString() == "external") {
-				if (verbose) trace("external content");
-				var tmpLoader:Loader = new Loader();
-				var assetloc:String = assetsURLs[sectionInfo.content.@medium];
-				var tmpURL:String = assetloc + sectionInfo.content.url;
-				loadedAssets[p_contentID] = tmpLoader;
-				loadedAssets[p_contentID].y = topMargin;
-/*				putAtTopOfDisplayIndex(loadedAssets[p_contentID]);*/
-				preloader.queueItemToLoad(tmpURL, loadedAssets[p_contentID], true);
-				setSectionsVisibility(p_contentID);
-			}else{
-				// handle non-external content?!?
-				if (verbose) trace("Content is internal");
+			switch ( sectionInfo.type.toString() ) {
+				case "InfographicPane" :
+					loadInfographicPane(sectionInfo);
+					break;
+				case "VideoPane" :
+					loadVideoPane(sectionInfo);
+					break;
+				case "IntroPane" :
+					loadIntroPane(sectionInfo);
+					break;
+				case "AlternativePane" :
+					loadInfographicPane(sectionInfo);
+					break;
+				default:
+					trace("Section class not found!");
 			}
-			
 		};
 		
 		// This is run if content is already loaded.
 		private function showSectionContent(p_contentID:String):void{
 			setSectionsVisibility(p_contentID);
+		};
+		
+		// This should be run right after xml is loaded, and not need to run again
+		private function loadIntroPane(p_sectionInfo:XMLList):void{
+			if (verbose) ("loadIntroPane run.");
+			// check for Introduction in  loaded assets
+			if(!loadedAssets[p_sectionInfo.title]){
+				var introText:String = p_sectionInfo.content.(@medium == "text").data;
+				introPane = new IntroPane(introText);
+				setSectionsVisibility(p_sectionInfo.title);
+				loadedAssets[p_sectionInfo.title] = introPane;
+				loadedAssets[p_sectionInfo.title].y = topMargin;
+				introPane.visible = false;
+			}
+		};
+		
+		private function loadVideoPane(p_sectionInfo:XMLList):void{
+			if (verbose) ("loadVideoPane run.");
+			// check for Introduction in  loaded assets
+			if(!loadedAssets[p_sectionInfo.title]){
+				var videoText:String = p_sectionInfo.content.(@medium == "text").data;
+				var tmpLoader:Loader = new Loader();
+				var assetloc:String = assetsURLs["movplayer"];
+				var tmpURL:String = assetloc + p_sectionInfo.content.(@medium=="movplayer").url;
+				var videoloc:String = assetsURLs["video"];
+				var videoURL:String =  videoloc + p_sectionInfo.content.(@medium=="video").url;
+				videoPane = new VideoPane(tmpLoader,videoURL, videoText);
+				loadedAssets[p_sectionInfo.title] = videoPane;
+				loadedAssets[p_sectionInfo.title].y = topMargin;
+				setSectionsVisibility(p_sectionInfo.title);
+				preloader.queueItemToLoad(tmpURL, tmpLoader, true);
+			}else{
+				// is already loaded and chouldn't need to load.
+			}
+		};
+		
+		private function loadInfographicPane(p_sectionInfo:XMLList):void{
+			if (p_sectionInfo.content.@loc.toString() == "external") {
+				if (!loadedAssets[p_sectionInfo.title]) {
+					if (verbose) trace("InfographicPane external");
+					var tmpLoader:Loader = new Loader();
+					var assetloc:String = assetsURLs[p_sectionInfo.content.@medium];
+					var tmpURL:String = assetloc + p_sectionInfo.content.url;
+					loadedAssets[p_sectionInfo.title] = tmpLoader;
+					loadedAssets[p_sectionInfo.title].y = topMargin;
+					preloader.queueItemToLoad(tmpURL, loadedAssets[p_sectionInfo.title], true);
+					setSectionsVisibility(p_sectionInfo.title);
+				}
+			}else{
+				// handle non-external content?!?
+				if (verbose) trace("InfographicPane is internal.");
+			}
 		};
 		
 		// Sets the visibilty of items in loadedAssets object based on the id of the content chosen for display
@@ -238,7 +276,6 @@
 				if (item != p_ChosenContentID) {
 					if (verbose) trace("resetNonCurrentSections >> reset " + loadedAssets[item]);
 					if ( (loadedAssets[item] is Loader) && ("reset" in loadedAssets[item].content) ) {
-						
 						loadedAssets[item].content.reset = true;
 					}else if("reset" in loadedAssets[item]){
 						loadedAssets[item].reset = true;

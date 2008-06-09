@@ -21,7 +21,7 @@
 		private var	origX:Number;
 		private var origY:Number;
 		
-		private var verbose:Boolean = true;
+		private var verbose:Boolean = false;
 		
 		public function NavButton(pName:String){
 			contentID = pName;
