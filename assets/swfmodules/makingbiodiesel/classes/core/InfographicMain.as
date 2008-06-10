@@ -52,11 +52,11 @@ package classes.core{
 			xmlInfo = e.target.xml;
 /*			if (verbose) trace("xmlInfo: " + xmlInfo);*/
 			if (verbose) trace("xmlLoaded...");
-			if (gotXML) {
+/*			if (gotXML) {
 				sectionsArr = new Array();
 				buttonArr = new Array();
 			}
-			for each ( var sectionID in  xmlInfo.sections.section.@id){
+*/			for each ( var sectionID in  xmlInfo.sections.section.@id){
 				sectionsArr.push(sectionID);
 				buttonArr.push(sectionID + "_btn"); // can do this since I'm already enforcing a naming convention for NavButton
 			};

@@ -3,16 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>classes/core/Main.as</string>
+	<string>classes/view/VideoPane.as</string>
 	<key>documents</key>
 	<array>
 		<dict>
 			<key>filename</key>
 			<string>classes/core/Main.as</string>
 			<key>lastUsed</key>
-			<date>2008-06-08T01:06:16Z</date>
-			<key>selected</key>
-			<true/>
+			<date>2008-06-09T20:49:08Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -24,7 +22,7 @@
 			<key>filename</key>
 			<string>classes/util/Preloader.as</string>
 			<key>lastUsed</key>
-			<date>2008-06-07T21:02:38Z</date>
+			<date>2008-06-09T20:14:59Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -36,13 +34,21 @@
 			<key>filename</key>
 			<string>classes/util/PreloaderEvent.as</string>
 			<key>lastUsed</key>
-			<date>2008-06-07T04:38:18Z</date>
+			<date>2008-06-09T19:15:07Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
-			<string>classes/ui/IntroPane.as</string>
+			<string>classes/view/IntroPane.as</string>
 			<key>lastUsed</key>
-			<date>2008-06-07T19:58:37Z</date>
+			<date>2008-06-09T20:35:28Z</date>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>classes/view/VideoPane.as</string>
+			<key>lastUsed</key>
+			<date>2008-06-09T20:49:08Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
@@ -54,43 +60,29 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>73</integer>
+				<integer>83</integer>
 				<key>line</key>
-				<integer>239</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>200</integer>
-		</dict>
-		<key>classes/ui/IntroPane.as</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>24</integer>
-				<key>line</key>
-				<integer>15</integer>
+				<integer>277</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>247</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>18</integer>
+				<integer>9</integer>
 				<key>line</key>
-				<integer>15</integer>
+				<integer>277</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>27</integer>
+				<integer>83</integer>
 				<key>line</key>
-				<integer>15</integer>
+				<integer>277</integer>
 			</dict>
 		</dict>
 		<key>classes/ui/NavButton.as</key>
@@ -100,7 +92,7 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>122</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -112,44 +104,28 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>35</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>181</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>139</integer>
+			<integer>86</integer>
 		</dict>
 		<key>classes/util/PreloaderEvent.as</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>35</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>11</integer>
+				<integer>10</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>22</integer>
-				<key>line</key>
-				<integer>11</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>38</integer>
-				<key>line</key>
-				<integer>11</integer>
-			</dict>
 		</dict>
 		<key>classes/util/SiteXML.as</key>
 		<dict>
@@ -165,6 +141,34 @@
 			<key>firstVisibleLine</key>
 			<integer>13</integer>
 		</dict>
+		<key>classes/view/IntroPane.as</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>20</integer>
+				<key>line</key>
+				<integer>6</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>classes/view/VideoPane.as</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>30</integer>
+				<key>line</key>
+				<integer>78</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>34</integer>
+		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
@@ -173,11 +177,12 @@
 		<string>classes/util/PreloaderEvent.as</string>
 		<string>classes/util/Preloader.as</string>
 		<string>classes/core/Main.as</string>
-		<string>classes/ui/IntroPane.as</string>
+		<string>classes/view/VideoPane.as</string>
+		<string>classes/view/IntroPane.as</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{232, 23}, {870, 1003}}</string>
+	<string>{{232, 0}, {870, 832}}</string>
 </dict>
 </plist>

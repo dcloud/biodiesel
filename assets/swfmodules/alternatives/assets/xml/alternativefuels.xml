@@ -4,6 +4,14 @@
 		<note><![CDATA[Data Source: U.S. Department of Energy Alternative Fuels & Advanced Vehicles Data Center. Average fuel prices for January 2008, the most recent dataset that includes alternative fuel prices.]]></note>
 	</notes>
 	<note><![CDATA[Mixtures of ethanol or biodiesel with gasoline are referred to by their alternative fuel concentration. For example, a mixture of 85% ethanol and 15% gasoline is called E85. Pure ethanol is called E100, whereas pure biodiesel is B100.]]></note>
+	<labels>
+		<label><![CDATA[Fuel Source]]></label>
+		<label><![CDATA[Percent of Gasoline's Energy (per gallon)]]></label>
+		<label><![CDATA[Vehicle Compatibility]]></label>
+		<label><![CDATA[Environmental Impacts]]></label>
+		<label><![CDATA[Safety Issues]]></label>
+		<label><![CDATA[Average Fuel Price]]></label>
+	</labels>
 	<sections>
 		<section>
 			<title><![CDATA[Gasoline]]></title>
