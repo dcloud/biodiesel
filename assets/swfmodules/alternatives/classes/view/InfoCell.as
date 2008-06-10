@@ -20,28 +20,30 @@ package classes.view {
 		public static const TITLE:String = "title";
 		public static const BODY:String = "body";
 		
-		public static const DEFAULT_HEIGHT:Number = 80;
-		public static const TITLE_HEIGHT:Number = 20;
-		
 		private var format:TextFormat;
 		private var cellType:String;
 
-		private var verbose:Boolean = true;
+		private var verbose:Boolean = false;
 		
 		public function InfoCell(p_type:String, p_text:String){
 			if (verbose) trace("create InfoLabel of type: " + p_type);
 			// wordWrap = true and autoSize = TextFieldAutoSize.LEFT mean resize from bottom
 			info_tf.wordWrap = true;
 			info_tf.autoSize = TextFieldAutoSize.LEFT;
+			info_tf.antiAliasType = AntiAliasType.ADVANCED;
 			
 			cellType = p_type;
 			applyTextFormat(cellType);
-			setHeight(cellType);
 			this.cellText = p_text;
+			this.cellHeight = this.textHeight;
 		}
 		
 		public function set cellText(p_text:String):void{
-			info_tf.text = p_text;
+			var textinput:String = p_text;
+			if (cellType == LABEL || cellType == TITLE) {
+				textinput = textinput.toUpperCase();
+			}
+			info_tf.text = textinput;
 			positionText();
 		};
 		
@@ -50,25 +52,24 @@ package classes.view {
 		};
 		
 		public function set cellHeight(p_heightNum:Number):void{
-			bg_sprite.height = p_heightNum;
+			bg_sprite.height = p_heightNum + 10;
+			positionText();
 		};
 		
 		public function get cellHeight():Number{
 			return bg_sprite.height;
 		};
 		
-		private function setHeight(p_type:String):void{
-			switch ( p_type ) {
-				case LABEL :
-					cellHeight = DEFAULT_HEIGHT;
-					break;
-				case TITLE :
-					cellHeight = TITLE_HEIGHT;
-					break;
-				default :
-				cellHeight = DEFAULT_HEIGHT;
-				break;
-			}
+		public function set cellWidth(p_width:Number):void{
+			bg_sprite.width = p_width;
+		};
+		
+		public function get cellWidth():Number{
+			return bg_sprite.width;
+		};
+		
+		public  function get textHeight():Number{
+			return info_tf.textHeight;
 		};
 		
 		private function applyTextFormat(p_type:String):void{
@@ -86,16 +87,18 @@ package classes.view {
 					format.align = TextFormatAlign.RIGHT;
 					format.leftMargin = 5;
 					format.rightMargin = 5;
-					format.bold = false;
-					format.size = 14;
+					format.bold = true;
+					format.size = 11;
+					format.leading = 1;
 					break;
 				default :
 					if (verbose) trace("format other");			
 					format.align = TextFormatAlign.LEFT;
-					format.leftMargin = 5;
-					format.rightMargin = 5;
+					format.leftMargin = 10;
+					format.rightMargin = 10;
 					format.bold = true;
 					format.size = 10;
+					format.leading = 0.6;
 			}
 			info_tf.defaultTextFormat = format;
 		};

@@ -28,7 +28,7 @@
 					<key>filename</key>
 					<string>classes/core/AlternativesMain.as</string>
 					<key>lastUsed</key>
-					<date>2008-06-10T05:46:41Z</date>
+					<date>2008-06-10T17:39:00Z</date>
 					<key>selected</key>
 					<true/>
 				</dict>
@@ -45,7 +45,7 @@
 					<key>filename</key>
 					<string>classes/view/InfoCell.as</string>
 					<key>lastUsed</key>
-					<date>2008-06-10T05:46:41Z</date>
+					<date>2008-06-10T17:39:00Z</date>
 				</dict>
 			</array>
 			<key>expanded</key>
@@ -63,14 +63,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>14</integer>
+				<integer>145</integer>
 				<key>line</key>
-				<integer>114</integer>
+				<integer>179</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>88</integer>
+			<integer>160</integer>
 		</dict>
 		<key>classes/util/LoadXML.as</key>
 		<dict>
@@ -91,25 +91,25 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>16</integer>
+				<integer>21</integer>
 				<key>line</key>
-				<integer>39</integer>
+				<integer>90</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>21</integer>
+			<integer>65</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>classes/util/LoadXML.as</string>
-		<string>classes/view/InfoCell.as</string>
 		<string>classes/core/AlternativesMain.as</string>
+		<string>classes/view/InfoCell.as</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{49, 0}, {985, 832}}</string>
+	<string>{{20, 0}, {985, 832}}</string>
 </dict>
 </plist>
