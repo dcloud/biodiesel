@@ -70,9 +70,10 @@
 			siteInfo = e.target.xml;
 			if (siteInfo) {
 				loadIntroPane(siteInfo.sections.section.(title=="Introduction"));
-				showSectionContent("Introduction");
 				createNavButtons();
 				getURLInfo();
+				showSectionContent("Introduction");
+				markCurrentSection("Introduction");
 			}else{
 				if (verbose) trace("XML was not loaded, so can't generate rest of the site.");
 			}
