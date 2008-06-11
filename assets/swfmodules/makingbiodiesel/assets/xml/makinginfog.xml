@@ -7,7 +7,7 @@
 			<text><![CDATA[Biodiesel fuel is made by chemically altering a vegetable oil or animal fat to reduce the viscosity, or the thickness, of the fluid to allow it to run in a regular diesel engine. This presentation explains the basic steps of producing biodiesel from start to finish.]]></text>
 		</section>
 		<section id="preparation">
-			<title><![CDATA[Preparation of oil]]></title>
+			<title><![CDATA[Prepare oil]]></title>
 			<text><![CDATA[Though you can make biodiesel from virgin vegetable oils or animal fats, most homebrewers make biodiesel from used oils such as used cooking oil. Non-oil particles and water must be filtered out before moving the oil into the vessel where the oil will be made into biodiesel.]]></text>
 		</section>
 		<section id="heatoil">
@@ -16,31 +16,31 @@
 		</section>		
 		<section id="chemicalprocess">
 			<title><![CDATA[The chemical process]]></title>
-			<text><![CDATA[Oil and fat are made up of fatty acids and glycerol, a viscous alcohol. In transesterification another alcohol, typically methanol, is introduced to the oil, and the glycerol breaks away from the fatty acids, and the fatty acids bond with the new alcohol to form biodiesel. Potassium hydroxide is frequently used as a catalyst, which means that it increases the rate of the reaction, but is not used up in the reaction. While the reaction can technically occur without a catalyst, the amount of heat and excess alcohol needed make it impractical to perform the transesterification without one.]]></text>
+			<text><![CDATA[Oil and fat are made up of fatty acids and glycerol, a viscous alcohol. In the process known as transesterification, another alcohol, typically methanol, is introduced to the oil. The glycerol breaks away from the fatty acids, and the fatty acids bond with the new alcohol to form biodiesel. Potassium hydroxide is frequently used as a catalyst, which means that it increases the rate of the reaction, but is not used up in the reaction. While the reaction can technically occur without a catalyst, the amount of heat and excess alcohol needed make it impractical to perform the transesterification without one.]]></text>
 		</section>		
 		<section id="titration">
-			<title><![CDATA[Test titration]]></title>
-			<text><![CDATA[Before starting the transesterification process on a large batch of oil, you will want to perform a titration. Titration is a test that indicates the amount of free fatty acids in waste oil. Free fatty acids will react with the methoxide during transesterification, reducing the amount of oil that gets made into biodiesel, so a titration will help determine how much extra catalyst is needed to ensure a more complete reaction.]]></text>
+			<title><![CDATA[Test for free fatty acids]]></title>
+			<text><![CDATA[Before starting the transesterification on a large batch of oil, a titration is performed. Titration is a test that indicates the amount of free fatty acids in waste oil. Free fatty acids will react with the methoxide during transesterification, reducing the amount of oil that gets made into biodiesel, so a titration will help determine how much extra catalyst is needed to ensure a more complete reaction.]]></text>
 		</section>		
 		<section id="makemethoxide">
 			<title><![CDATA[Make methoxide]]></title>
-			<text><![CDATA[After titrating to determine how much catalyst is needed, the catalyst is mixed with the alcohol to make methoxide. Potassium hydroxide is a crystalline solid, but will gradually dissolve in the methanol. This generally takes around 15 minutes.]]></text>
+			<text><![CDATA[After titrating to determine how much catalyst is needed, the potassium hydroxide is mixed with the methanol to make methoxide. Potassium hydroxide is a crystalline solid, but will gradually dissolve in the methanol. This generally takes about 15 minutes.]]></text>
 		</section>		
 		<section id="mixmethoxide">
 			<title><![CDATA[Mix methoxide into oil]]></title>
-			<text><![CDATA[After the oil has been heated and the methoxide mixed, it is time to introduce the methoxide into the oil. This is usually achieved by slowly spraying methoxide slowly into the reaction tank as the oil is being mixed constantly to help spread the reaction throughout the tank. Introducing the methoxide slowly helps the methoxide to react fully with the oil. During this phase, the transesterifcation process is taking place, and biodiesel and glycerol are being created. The reaction should be complete after one to two hours, leaving a mixture of biodiesel and glycerol in the reactor.]]></text>
+			<text><![CDATA[After the oil has been heated and the methoxide mixed, it is time to introduce the methoxide into the oil. This is usually achieved by spraying methoxide slowly into the reaction tank as the oil is being mixed constantly to help spread the reaction throughout the tank. Introducing the methoxide slowly helps the methoxide to react fully with the oil. During this phase, transesterification is taking place, and biodiesel and glycerol are being created. The reaction should be complete after one to two hours, leaving a mixture of biodiesel and glycerol in the reactor.]]></text>
 		</section>		
 		<section id="separation">
 			<title><![CDATA[Let biodiesel separate from glycerol]]></title>
-			<text><![CDATA[After the reaction is complete, the biodiesel and glyrcerol are left in the reactor tank to separate and settle. Glycerol will sink to the bottom of the tank while the biodiesel floats on top. The tank should be left alone for eight or more hours to allow for separation of the biodiesel from the glycerol.]]></text>
+			<text><![CDATA[After the reaction is complete, the biodiesel and glycerol are left in the reactor tank to separate and settle. Glycerol will sink to the bottom of the tank while the biodiesel floats on top. The tank should be left alone for eight or more hours to allow for the separation.]]></text>
 		</section>		
 		<section id="drainglycerol">
 			<title><![CDATA[Drain glycerol]]></title>
-			<text><![CDATA[To remove the glycerol from the biodiesel, a valve at the bottom of the reaction tank is opened and the glycerol is drained out. Glycerol is cloudy in appearance whereas biodiesel is translucent, so the draining liquid is monitored for the change from cloudy to translucent, indicating that all of the glycerol has been removed. The glycerol can be disposed of, but can also be used to make soap.]]></text>
+			<text><![CDATA[To remove the glycerol from the biodiesel, a valve at the bottom of the reaction tank is opened and the glycerol is drained out. Glycerol is cloudy in appearance and biodiesel is translucent, so the draining liquid is monitored for the change from cloudy to translucent, indicating that all of the glycerol has been removed. The glycerol can be disposed of, but can also be used to make soap.]]></text>
 		</section>		
 		<section id="washbiodiesel">
-			<title><![CDATA[Wash biodiesel with water]]></title>
-			<text><![CDATA[Biodiesel is washed to remove unreacted oil, free fatty acids, and the leftover methoxide. There are a number of techniques for washing biodiesel, but the two most common are bubble washing and misting. In a misting wash, water is sprayed on top of the biodiesel and collects the impurities as it sinks through the biodiesel. Bubble washing involves adding water to the biodiesel and creating air bubbles that push the water up through the biodiesel, then letting it sink to catch more impurities. Washing is usually done multiple times, and can take up to 16 hours.]]></text>
+			<title><![CDATA[Wash biodiesel]]></title>
+			<text><![CDATA[Biodiesel is washed to remove unreacted oil, free fatty acids and the leftover methoxide. There are a number of techniques for washing biodiesel, but the two most common are bubble washing and misting. In a misting wash, water is sprayed on top of the biodiesel and collects the impurities as it sinks. Bubble washing involves adding water to the biodiesel and creating air bubbles that push the water up through the biodiesel, then letting it sink to catch more impurities. Washing is usually done multiple times and can take up to 16 hours.]]></text>
 		</section>		
 		<section id="drybiodiesel">
 			<title><![CDATA[Remove wash water]]></title>

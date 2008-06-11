@@ -25,7 +25,7 @@
 			</item>
 			<item>
 				<label><![CDATA[Vehicle Compatibility]]></label>
-				<data><![CDATA[Compatible with vehicles that have standard combustion engines]]></data>
+				<data><![CDATA[Compatible with vehicles that have standard combustion engines.]]></data>
 			</item>
 			<item>
 				<label><![CDATA[Environmental Impacts]]></label>
@@ -33,7 +33,7 @@
 			</item>
 			<item>
 				<label><![CDATA[Safety Issues]]></label>
-				<data><![CDATA[Highly flammable]]></data>
+				<data><![CDATA[Highly flammable.]]></data>
 			</item>
 			<item>
 				<label><![CDATA[Average Fuel Price]]></label>
@@ -52,7 +52,7 @@
 			</item>
 			<item>
 				<label><![CDATA[Vehicle Compatibility]]></label>
-				<data><![CDATA[Compatible with vehicles that have diesel engines]]></data>
+				<data><![CDATA[Compatible with vehicles that have diesel engines.]]></data>
 			</item>
 			<item>
 				<label><![CDATA[Environmental Impacts]]></label>
@@ -79,7 +79,7 @@
 			</item>
 			<item>
 				<label><![CDATA[Vehicle Compatibility]]></label>
-				<data><![CDATA[Compatible with vehicles that have diesel engines]]></data>
+				<data><![CDATA[Compatible with vehicles that have diesel engines.]]></data>
 			</item>
 			<item>
 				<label><![CDATA[Environmental Impacts]]></label>
@@ -98,7 +98,7 @@
 			<title><![CDATA[Electricity]]></title>
 			<item>
 				<label><![CDATA[Fuel Source]]></label>
-				<data><![CDATA[Dependent on power plant fuel source (coal, nuclear, hydroelectric, etc.)]]></data>
+				<data><![CDATA[Dependent on power plant fuel source (coal, nuclear, hydroelectric, etc.).]]></data>
 			</item>
 			<item>
 				<label><![CDATA[Percent of Gasoline's Energy (per gallon)]]></label>
@@ -152,15 +152,15 @@
 			<title><![CDATA[Hydrogen]]></title>
 			<item>
 				<label><![CDATA[Fuel Source]]></label>
-				<data><![CDATA[Natural gas, methanol, or electrolysis of water.]]></data>
+				<data><![CDATA[Natural gas, methanol or electrolysis of water.]]></data>
 			</item>
 			<item>
 				<label><![CDATA[Percent of Gasoline's Energy (per gallon)]]></label>
-				<data><![CDATA[44.4% for 1lb of H2]]></data>
+				<data><![CDATA[44.4% for 1lb. of H2]]></data>
 			</item>
 			<item>
 				<label><![CDATA[Vehicle Compatibility]]></label>
-				<data><![CDATA[Currently there are no commercially available hydrogen vehicles/]]></data>
+				<data><![CDATA[Currently there are no commercially available hydrogen vehicles.]]></data>
 			</item>
 			<item>
 				<label><![CDATA[Environmental Impacts]]></label>
@@ -168,7 +168,7 @@
 			</item>
 			<item>
 				<label><![CDATA[Safety Issues]]></label>
-				<data><![CDATA[Standards have been set for fuel cell vehicles, but with vehicles, there is not data. Safety record in industrial use is excellent.]]></data>
+				<data><![CDATA[Standards have been set for fuel cell vehicles, but with vehicles, there is no data. Safety record in industrial use is excellent.]]></data>
 			</item>
 			<item>
 				<label><![CDATA[Average Fuel Price]]></label>
