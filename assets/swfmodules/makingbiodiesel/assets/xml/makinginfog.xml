@@ -4,7 +4,7 @@
 	<sections>
 		<section id="overview">
 			<title><![CDATA[Overview]]></title>
-			<text><![CDATA[Biodiesel fuel is made by chemically altering a vegetable oil or animal fat to reduce the viscosity, or the thickness, of the fluid to allow it to run in a regular diesel engine. This presentation explains the basic steps of producing biodiesel from start to finish.]]></text>
+			<text><![CDATA[Biodiesel fuel is made by chemically altering a vegetable oil or animal fat to reduce the viscosity, or the thickness, of the fluid to allow it to run in a regular diesel engine. This presentation explains the basic steps of producing biodiesel from start to finish. Click on each wedge above to explore the process.]]></text>
 		</section>
 		<section id="preparation">
 			<title><![CDATA[Prepare oil]]></title>
@@ -12,7 +12,7 @@
 		</section>
 		<section id="heatoil">
 			<title><![CDATA[Heat oil]]></title>
-			<text><![CDATA[Heating the vegetable oil to around 120ºF will speed up the reaction, reducing the time needed for the reaction to complete from between four and eight hours to one or two hours.]]></text>
+			<text><![CDATA[Heating the vegetable oil to around 120ºF will reduce the time needed to complete the reaction from  4-8 hours to 1-2 hours.]]></text>
 		</section>		
 		<section id="chemicalprocess">
 			<title><![CDATA[The chemical process]]></title>
@@ -40,7 +40,7 @@
 		</section>		
 		<section id="washbiodiesel">
 			<title><![CDATA[Wash biodiesel]]></title>
-			<text><![CDATA[Biodiesel is washed to remove unreacted oil, free fatty acids and the leftover methoxide. There are a number of techniques for washing biodiesel, but the two most common are bubble washing and misting. In a misting wash, water is sprayed on top of the biodiesel and collects the impurities as it sinks. Bubble washing involves adding water to the biodiesel and creating air bubbles that push the water up through the biodiesel, then letting it sink to catch more impurities. Washing is usually done multiple times and can take up to 16 hours.]]></text>
+			<text><![CDATA[Biodiesel is washed to remove oil that did not turn into biodiesel, free fatty acids and the leftover methoxide. There are a number of techniques for washing biodiesel, but the two most common are misting and bubble washing. In a misting wash, water is sprayed on top of the biodiesel and collects the impurities as it sinks. Bubble washing involves adding water to the biodiesel and creating air bubbles that push the water up through the biodiesel, then letting it sink to catch more impurities. Washing is usually done multiple times and can take up to 16 hours.]]></text>
 		</section>		
 		<section id="drybiodiesel">
 			<title><![CDATA[Remove wash water]]></title>

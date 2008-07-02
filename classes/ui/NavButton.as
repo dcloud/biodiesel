@@ -32,7 +32,7 @@
 			hitTestState = upState;
 			setHandlers();
 			
-			selectedFilters = [createDropShadow(0x333333, 3, 2, 45, 0.8)];
+			selectedFilters = [createDropShadow(0x000000, 3, 2, 45, 0.8)];
 			
 			var embeddedFonts:Array = Font.enumerateFonts(false);
 			embeddedFonts.sortOn("fontName", Array.CASEINSENSITIVE);
@@ -113,6 +113,7 @@
 				this.upState.filters = selectedFilters;
 				this.overState.filters = selectedFilters;
 				this.downState.filters = selectedFilters;
+				this.enabled = false;
 			}else{
 				if (verbose) {
 					trace("NavButton '" + this.id + "' is NOT selected.");
@@ -120,6 +121,7 @@
 				this.upState.filters = defaultUpFilters;
 				this.overState.filters = defaultOverFilters;
 				this.downState.filters = defaultDownFilters;
+				this.enabled = true;
 			}
 		};
 		
