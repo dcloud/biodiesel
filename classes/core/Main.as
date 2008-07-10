@@ -69,9 +69,9 @@
 			siteInfo = new XML();
 			siteInfo = e.target.xml;
 			if (siteInfo) {
+				getURLInfo();
 				loadIntroPane(siteInfo.sections.section.(title=="Introduction"));
 				createNavButtons();
-				getURLInfo();
 				showSectionContent("Introduction");
 				markCurrentSection("Introduction");
 			}else{
@@ -89,7 +89,7 @@
 			if(siteInfo.info.assets.asset){
 				if (verbose) trace("siteInfo has assets urls. Save in object");
 				for each ( var item:XML in siteInfo.info.assets.asset){
-					if (verbose) {
+					if (true) {
 						trace("asset url: " + item.@url);
 					}
 					assetsURLs[item.@medium] = siteInfo.info.assets.@url + item.@url;
@@ -122,7 +122,7 @@
 				if (j == 0) {
 					buttonArray[j].x = 200;
 				}else{
-					buttonArray[j].x += buttonArray[j-1].x + buttonArray[j-1].width + 40;
+					buttonArray[j].x += buttonArray[j-1].x + buttonArray[j-1].width + 25;
 					
 				}
 				buttonArray[j].y = 40;
@@ -196,7 +196,11 @@
 			// check for Introduction in  loaded assets
 			if(!loadedAssets[p_sectionInfo.title]){
 				var introText:String = p_sectionInfo.content.(@medium == "text").data;
-				introPane = new IntroPane(introText);
+				var loaderURL:String = assetsURLs["image"] + p_sectionInfo.content.(@medium == "image").url.toString();
+				trace("Load: " + loaderURL);
+				var introImgLoader:Loader = new Loader();
+				preloader.queueItemToLoad(loaderURL, introImgLoader, true);
+				introPane = new IntroPane(introText, introImgLoader);
 				setSectionsVisibility(p_sectionInfo.title);
 				loadedAssets[p_sectionInfo.title] = introPane;
 				loadedAssets[p_sectionInfo.title].y = topMargin;

@@ -52,7 +52,7 @@
 			
 			var format:TextFormat = new TextFormat();
 			format.font = "Avenir LT Std 65 Medium";
-			format.size = 18;
+			format.size = 20;
 			format.color = pColor;
 			
 			txtLabel.setTextFormat(format);

@@ -15,6 +15,9 @@
 			<content loc="internal" medium="text">
 				<data><![CDATA[As gasoline prices in the United States reach record highs, alternative fuels such as ethanol, electricity, hydrogen and biodiesel are being looked at as possible replacements for petroleum-based fuels. Biodiesel is unique among the alternative fuels because it can be made from used vegetable oils or animal fats, it will run in unmodified diesel vehicles, and it can be produced by anyone willing to learn how. This site explores how biodiesel is made, why it appeals to people who view it as a sustainable alternative to gasoline, and how biodiesel compares with other alternative fuels.]]></data>
 			</content>
+			<content loc="external" medium="image">
+				<url><![CDATA[introphoto.jpg]]></url>
+			</content>
 		</section>
 		<section>
 			<title><![CDATA[Making Biodiesel]]></title>
