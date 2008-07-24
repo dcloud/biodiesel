@@ -24,8 +24,9 @@
 		private var verbose:Boolean = false;
 		
 		public function NavButton(pName:String){
-			contentID = pName;
-			this.labelText = contentID;
+			var rawName:String = pName;
+			contentID = rawName;
+			this.labelText = rawName.replace(/\s/, "\n");
 			upState = createUpState();
 			overState = createOverState();
 			downState = createDownState();

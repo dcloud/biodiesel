@@ -10,6 +10,7 @@
 	import classes.util.SiteXML;
 	import classes.ui.NavButton;
 	import classes.view.IntroPane;
+	import classes.view.OutroPane;
 	import classes.view.VideoPane;
 		
 	public class Main extends Sprite{
@@ -25,6 +26,7 @@
 		
 		private var preloader:Preloader;
 		private var introPane:IntroPane;
+		private var outroPane:OutroPane;
 		private var videoPane:VideoPane;
 	
 		private var bgLoader:Loader;
@@ -71,6 +73,7 @@
 			if (siteInfo) {
 				getURLInfo();
 				loadIntroPane(siteInfo.sections.section.(title=="Introduction"));
+				loadOutroPane(siteInfo.sections.section.(title=="Looking Ahead"));
 				createNavButtons();
 				showSectionContent("Introduction");
 				markCurrentSection("Introduction");
@@ -120,12 +123,12 @@
 				newButton.name = "button" + j;
 				buttonArray[j] = newButton;
 				if (j == 0) {
-					buttonArray[j].x = 200;
+					buttonArray[j].x = 210;
 				}else{
-					buttonArray[j].x += buttonArray[j-1].x + buttonArray[j-1].width + 25;
+					buttonArray[j].x += buttonArray[j-1].x + buttonArray[j-1].width + 55;
 					
 				}
-				buttonArray[j].y = 40;
+				buttonArray[j].y = 25;
 				putAtTopOfDisplayIndex(buttonArray[j]);
 /*				var preloaderIndex:int = getChildIndex(preloader);
 				addChildAt(buttonArray[j], preloaderIndex);
@@ -205,6 +208,24 @@
 				loadedAssets[p_sectionInfo.title] = introPane;
 				loadedAssets[p_sectionInfo.title].y = topMargin;
 				introPane.visible = false;
+			}
+		};
+		
+		// This should be run right after xml is loaded, and not need to run again
+		private function loadOutroPane(p_sectionInfo:XMLList):void{
+			if (verbose) ("loadOutroPane run.");
+			// check for Introduction in  loaded assets
+			if(!loadedAssets[p_sectionInfo.title]){
+				var introText:String = p_sectionInfo.content.(@medium == "text").data;
+				var loaderURL:String = assetsURLs["image"] + p_sectionInfo.content.(@medium == "image").url.toString();
+				trace("Load: " + loaderURL);
+				var introImgLoader:Loader = new Loader();
+				preloader.queueItemToLoad(loaderURL, introImgLoader, true);
+				outroPane = new OutroPane(introText, introImgLoader);
+				setSectionsVisibility(p_sectionInfo.title);
+				loadedAssets[p_sectionInfo.title] = outroPane;
+				loadedAssets[p_sectionInfo.title].y = topMargin;
+				outroPane.visible = false;
 			}
 		};
 		
